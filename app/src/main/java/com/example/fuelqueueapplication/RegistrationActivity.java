@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fuelqueueapplication.api.ApiClient;
 import com.example.fuelqueueapplication.api.interfaces.LoginInterface;
 import com.example.fuelqueueapplication.api.request.UserRegisterRequest;
 import com.example.fuelqueueapplication.api.response.UserRegisterResponse;
@@ -30,7 +31,7 @@ import retrofit2.Response;
 public class RegistrationActivity extends AppCompatActivity {
     String email, password, username, vehicleType;
     TextInputLayout emailInputLayout, passwordInputLayout, usernameInputLayout, vehicleTypeLayout;
-    TextView errorMessage;
+    TextView errorMessage,signInLink;
     EditText emailInput, passwordInput, usernameInput;
     AutoCompleteTextView vehicleTypeInput;
     ArrayAdapter<String> arrayAdapter;
@@ -54,8 +55,10 @@ public class RegistrationActivity extends AppCompatActivity {
         usernameInputLayout = findViewById(R.id.registerUsernameInputLayout);
         vehicleTypeLayout = findViewById(R.id.registerVehicleTypeInputLayout);
         errorMessage = findViewById(R.id.registerErrorMessage);
+        signInLink = findViewById(R.id.signInLink);
 
         arrayAdapter = new ArrayAdapter<String>(this,R.layout.vehicle_item_view,items);
+        loginInterface = ApiClient.getClient().create(LoginInterface.class);
 
         vehicleTypeInput.setAdapter(arrayAdapter);
         vehicleTypeInput.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -78,6 +81,12 @@ public class RegistrationActivity extends AppCompatActivity {
         }
 
     }
+    public void linkOnClick(View view){
+        Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
+        startActivity(intent);
+
+    }
+
 
     private boolean registrationValidation() {
         email = emailInput.getText().toString().trim();
@@ -128,7 +137,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     if(result){
                         Toast.makeText(RegistrationActivity.this, "CAN'T_SAVE", Toast.LENGTH_SHORT).show();
                     }else {
-                        Intent intent = new Intent(RegistrationActivity.this, ShedListActivity.class);
+                        Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
                         startActivity(intent);
                         finish();
 

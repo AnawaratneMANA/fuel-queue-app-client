@@ -3,6 +3,7 @@ package com.example.fuelqueueapplication;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -10,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fuelqueueapplication.api.ApiClient;
+import com.example.fuelqueueapplication.api.interfaces.FuelStationInterface;
 import com.example.fuelqueueapplication.api.interfaces.LoginInterface;
 import com.example.fuelqueueapplication.api.request.UserRegisterRequest;
 import com.example.fuelqueueapplication.api.response.UserRegisterResponse;
@@ -26,7 +29,6 @@ public class LoginActivity extends AppCompatActivity {
     TextView errorMessage;
     EditText passwordInput, usernameInput;
     LoginInterface loginInterface;
-    DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,8 @@ public class LoginActivity extends AppCompatActivity {
         usernameInput = findViewById(R.id.lUsernameInput);
         errorMessage = findViewById(R.id.loginErrorMessage);
 
+        loginInterface = ApiClient.getClient().create(LoginInterface.class);
+
     }
 
     public void onClick(View view) {
@@ -53,7 +57,10 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-
+    public void linkOnClick(View view){
+        Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
+        startActivity(intent);
+    }
 
     private boolean loginValidation() {
         password = passwordInput.getText().toString().trim();
@@ -79,17 +86,27 @@ public class LoginActivity extends AppCompatActivity {
 
     private void singIn() {
         UserRegisterRequest userRegisterRequest = new UserRegisterRequest(username,"",password,"","");
-        Call<UserRegisterResponse> call = loginInterface.userRegister(userRegisterRequest);
+        Call<UserRegisterResponse> call = loginInterface.userLogin(userRegisterRequest);
         call.enqueue(new Callback<UserRegisterResponse>() {
             @Override
             public void onResponse(Call<UserRegisterResponse> call, Response<UserRegisterResponse> response) {
                 if(response.isSuccessful()){
+                    UserRegisterResponse userRegisterResponse = response.body();
+                    System.out.println(response.body());
+                    System.out.println("---------------------------------------");
+                    System.out.println(userRegisterResponse);
+
+                    if(userRegisterResponse.getRole().equals("user")){
+                        Intent intent = new Intent(LoginActivity.this, FuelStationActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
 
 
                 }else {
                     passwordInputLayout.setError(" ");
                     usernameInput.setError(" ");
-                    errorMessage.setText("please check the details again");
+                    errorMessage.setText("please check your credentials");
                 }
             }
 
