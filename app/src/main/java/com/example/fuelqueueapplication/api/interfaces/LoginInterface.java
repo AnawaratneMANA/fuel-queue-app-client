@@ -8,10 +8,10 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface LoginInterface {
-    @POST("/v1.0/app/authentication/sign-in")
+    @POST("/api/User/registration")
     Call<UserRegisterResponse> userRegister(@Body UserRegisterRequest registerRequest);
 
-    @POST("/v1.0/app/authentication/sign-in")
+    @POST("/api/User/login")
     Call<UserRegisterResponse> userLogin(@Body UserRegisterRequest loginRequest);
 
 }
