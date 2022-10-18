@@ -1,5 +1,6 @@
 package com.example.fuelqueueapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -8,13 +9,22 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fuelqueueapplication.api.interfaces.LoginInterface;
+import com.example.fuelqueueapplication.api.request.UserRegisterRequest;
+import com.example.fuelqueueapplication.api.response.UserRegisterResponse;
+import com.example.fuelqueueapplication.persistance.DBHelper;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONException;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class RegistrationActivity extends AppCompatActivity {
@@ -25,6 +35,8 @@ public class RegistrationActivity extends AppCompatActivity {
     AutoCompleteTextView vehicleTypeInput;
     ArrayAdapter<String> arrayAdapter;
     String[] items = {"Car","Van", "Bus","Motorcycle", "Three Wheel", "Lorry"};
+    LoginInterface loginInterface;
+    DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +76,6 @@ public class RegistrationActivity extends AppCompatActivity {
         if (registrationValidation()) {
             singUp();
         }
-
 
     }
 
@@ -107,6 +118,35 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private void singUp() {
+        UserRegisterRequest userRegisterRequest = new UserRegisterRequest(username,email,password,"user",vehicleType);
+        Call<UserRegisterResponse> call = loginInterface.userRegister(userRegisterRequest);
+        call.enqueue(new Callback<UserRegisterResponse>() {
+            @Override
+            public void onResponse(Call<UserRegisterResponse> call, Response<UserRegisterResponse> response) {
+                if(response.isSuccessful()){
+                    boolean result = dbHelper.saveUser(username,email,password,vehicleType,"user");
+                    if(result){
+                        Toast.makeText(RegistrationActivity.this, "CAN'T_SAVE", Toast.LENGTH_SHORT).show();
+                    }else {
+                        Intent intent = new Intent(RegistrationActivity.this, ShedListActivity.class);
+                        startActivity(intent);
+                        finish();
+
+                    }
+                }else {
+                    emailInputLayout.setError(" ");
+                    passwordInputLayout.setError(" ");
+                    vehicleTypeLayout.setError(" ");
+                    usernameInput.setError(" ");
+                    errorMessage.setText("please check the details again");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserRegisterResponse> call, Throwable t) {
+                Toast.makeText(RegistrationActivity.this, "INTERNAL_SERVER_ERROR(CAN'T_REACH_SEVER)", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 }
