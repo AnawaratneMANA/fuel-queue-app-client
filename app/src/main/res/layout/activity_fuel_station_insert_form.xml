@@ -37,7 +37,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="32dp"
         android:hint="Start Time"
-        app:endIconMode="clear_text"
+        app:startIconDrawable="@drawable/ic_bassline_clock_48"
         app:helperTextEnabled="false"
         app:startIconTint="@color/purple_500">
 
@@ -47,16 +47,9 @@
             android:layout_height="wrap_content"
             android:focusable="false"
             android:cursorVisible="false"
-            android:clickable="false"
+            android:clickable="true"
             />
 
-        <Button
-            android:id="@+id/setStartingTimeButton"
-            android:layout_width="200dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:onClick="onClick"
-            android:text="Set Starting Time"  android:layout_height="50dp"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -69,6 +62,7 @@
         android:layout_marginEnd="32dp"
         android:hint="End Time"
         app:endIconMode="clear_text"
+        app:startIconDrawable="@drawable/ic_bassline_clock_48"
         app:helperTextEnabled="false"
         app:startIconTint="@color/purple_500">
 
@@ -81,13 +75,6 @@
             android:clickable="false"
             />
 
-        <Button
-            android:id="@+id/setEndingTimeButton"
-            android:layout_width="200dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:onClick="onClick"
-            android:text="Set Ending Time"  android:layout_height="50dp"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
