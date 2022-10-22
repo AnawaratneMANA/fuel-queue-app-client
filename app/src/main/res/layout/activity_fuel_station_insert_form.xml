@@ -8,25 +8,6 @@
     android:layout_marginTop="20dp"
     tools:context=".FuelStationInsertForm">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/fuelStationNameInputContainer"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="32dp"
-        android:hint="Fuel Station Name"
-        app:endIconMode="clear_text"
-        app:helperTextEnabled="false"
-        app:startIconTint="@color/purple_500">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/rFuelStationName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
-
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/FuelServiceStartTime"
@@ -78,25 +59,6 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/registerEmailInputLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="32dp"
-        android:hint="Location"
-        app:endIconMode="clear_text"
-        app:helperTextEnabled="false"
-        app:startIconTint="@color/purple_500">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/rLocationInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/registerVehicleTypeInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
@@ -104,7 +66,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="32dp"
-        android:hint="No of Pumps"
+        android:hint="Fuel Type"
         app:startIconTint="@color/purple_500"
         >
 
@@ -126,7 +88,7 @@
         android:layout_marginBottom="10dp"
         android:gravity="center"
         android:onClick="onClick"
-        android:text="Insert Fuel Station"
+        android:text="Update station details"
         />
 
 

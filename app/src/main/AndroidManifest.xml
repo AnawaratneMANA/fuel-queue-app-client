@@ -14,6 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FuelQueueApplication">
         <activity
+            android:name=".FuelStationDetailsRequestActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".FuelStationInsertForm"
             android:exported="true">
             <meta-data
@@ -38,7 +45,7 @@
         </activity>
         <activity
             android:name=".FuelStationActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
