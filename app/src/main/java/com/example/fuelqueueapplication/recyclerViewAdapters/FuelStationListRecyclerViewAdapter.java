@@ -93,8 +93,6 @@ public class FuelStationListRecyclerViewAdapter extends RecyclerView.Adapter<Fue
             super(itemView);
 
             location = itemView.findViewById(R.id.fuelStationLocation);
-            endTime = itemView.findViewById(R.id.fuelStationEndTime);
-            StartingTime = itemView.findViewById(R.id.fuelStationStartingTime);
             layout = itemView.findViewById(R.id.fuelStationRawViewOuterLayout);
 
             layout.setOnClickListener(new View.OnClickListener() {
@@ -108,7 +106,6 @@ public class FuelStationListRecyclerViewAdapter extends RecyclerView.Adapter<Fue
                     context.startActivity(intent);
                 }
             });
-
 
         }
     }

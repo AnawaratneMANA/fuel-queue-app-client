@@ -13,7 +13,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase DB) {
-        DB.execSQL("create Table user (id integer primary key autoincrement, username text, email text, password text, vehicleType text, role text)");
+        DB.execSQL("create Table user (id integer primary key autoincrement,userid text, username text, role text)");
     }
 
     @Override
@@ -23,14 +23,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean saveUser(String username, String email, String password, String vehicleType, String role){
+    public boolean saveUser(String userid, String username, String role){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
+        cv.put("userid",userid);
         cv.put("username",username);
-        cv.put("email",email);
-        cv.put("password",password);
-        cv.put("vehicleType",vehicleType);
         cv.put("role",role);
 
         long result = db.insert("User",null,cv);

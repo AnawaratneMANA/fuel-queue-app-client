@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    public void linkOnClick(View view){
+    public void linkOnClick(View view) {
         Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
         startActivity(intent);
     }
@@ -85,25 +85,27 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void singIn() {
-        UserRegisterRequest userRegisterRequest = new UserRegisterRequest(username,"",password,"","");
+        UserRegisterRequest userRegisterRequest = new UserRegisterRequest(username, "", password, "", "");
         Call<UserRegisterResponse> call = loginInterface.userLogin(userRegisterRequest);
         call.enqueue(new Callback<UserRegisterResponse>() {
             @Override
             public void onResponse(Call<UserRegisterResponse> call, Response<UserRegisterResponse> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
+                    DBHelper dbHelper = new DBHelper(LoginActivity.this);
                     UserRegisterResponse userRegisterResponse = response.body();
-                    System.out.println(response.body());
-                    System.out.println("---------------------------------------");
-                    System.out.println(userRegisterResponse);
+                    boolean result = dbHelper.saveUser(userRegisterResponse.getId(),
+                            userRegisterResponse.getUsername(),
+                            userRegisterResponse.getRole());
 
-                    if(userRegisterResponse.getRole().equals("user")){
+                    if (result) {
+                        Toast.makeText(LoginActivity.this, "CAN'T_SAVE_USER", Toast.LENGTH_SHORT).show();
+                    } else if (userRegisterResponse.getRole().equals("user")) {
                         Intent intent = new Intent(LoginActivity.this, FuelStationActivity.class);
                         startActivity(intent);
                         finish();
                     }
 
-
-                }else {
+                } else {
                     passwordInputLayout.setError(" ");
                     usernameInput.setError(" ");
                     errorMessage.setText("please check your credentials");

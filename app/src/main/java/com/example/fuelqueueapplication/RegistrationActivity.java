@@ -132,16 +132,9 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<UserRegisterResponse> call, Response<UserRegisterResponse> response) {
                 if(response.isSuccessful()){
-                    DBHelper dbHelper = new DBHelper(RegistrationActivity.this);
-                    boolean result = dbHelper.saveUser(username,email,password,vehicleType,"user");
-                    if(result){
-                        Toast.makeText(RegistrationActivity.this, "CAN'T_SAVE", Toast.LENGTH_SHORT).show();
-                    }else {
-                        Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                        finish();
-
-                    }
+                    Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
                 }else {
                     emailInputLayout.setError(" ");
                     passwordInputLayout.setError(" ");
