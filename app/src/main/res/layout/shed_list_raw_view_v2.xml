@@ -71,7 +71,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/circle" />
+                android:background="@drawable/edit_48px" />
         </LinearLayout>
         <TextView
             android:id="@+id/numberOfVehicles"

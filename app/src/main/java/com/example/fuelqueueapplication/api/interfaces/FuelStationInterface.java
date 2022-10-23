@@ -12,3 +12,6 @@ public interface FuelStationInterface {
     Call<List<FuelStationResponse>> getAllFuelStations();
 
 }
+
+// TODO: Interface define #1
+// TODO: request / response define
