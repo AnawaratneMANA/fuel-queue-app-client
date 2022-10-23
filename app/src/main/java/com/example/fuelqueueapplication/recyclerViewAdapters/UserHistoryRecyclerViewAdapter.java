@@ -17,7 +17,9 @@ import com.example.fuelqueueapplication.FuelStationDetailActivity;
 import com.example.fuelqueueapplication.R;
 import com.example.fuelqueueapplication.api.response.FuelStationResponse;
 import com.example.fuelqueueapplication.api.response.UserHistoryResponse;
+import com.example.fuelqueueapplication.util.DateTimeOperations;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +27,7 @@ public class UserHistoryRecyclerViewAdapter extends RecyclerView.Adapter<UserHis
     List<UserHistoryResponse> historyResponseList;
     List<UserHistoryResponse> historyResponseFullList;
     Context context;
+    DateTimeOperations dateTimeOperations =new DateTimeOperations();
 
     public UserHistoryRecyclerViewAdapter(Context context,List<UserHistoryResponse> historyResponseList) {
         this.context = context;
@@ -35,7 +38,7 @@ public class UserHistoryRecyclerViewAdapter extends RecyclerView.Adapter<UserHis
     @NonNull
     @Override
     public UserHistoryRecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_user_history, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_history_raw_view, parent, false);
         return new UserHistoryRecyclerViewAdapter.MyViewHolder(view);
     }
 
@@ -45,6 +48,14 @@ public class UserHistoryRecyclerViewAdapter extends RecyclerView.Adapter<UserHis
         holder.entryTime.setText(historyResponseList.get(position).getStartDateTime());
         holder.leaveTime.setText(historyResponseList.get(position).getEndDateTime());
         holder.fuelAmount.setText(historyResponseList.get(position).getFuelAmount());
+        String startTime = historyResponseList.get(position).getStartDateTime();
+        String endTime = historyResponseList.get(position).getEndDateTime();
+        try {
+            String waitedTime = dateTimeOperations.getDateDifferance(startTime,endTime);
+            holder.waitTime.setText(waitedTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -104,12 +115,7 @@ public class UserHistoryRecyclerViewAdapter extends RecyclerView.Adapter<UserHis
             layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    String locationName = historyResponseList.get(getAdapterPosition()).getLocation();
-                    String id = historyResponseList.get(getAdapterPosition()).getId();
-                    Intent intent = new Intent(context, FuelStationDetailActivity.class);
-                    intent.putExtra("id", id);
-                    intent.putExtra("locationName", locationName);
-                    context.startActivity(intent);
+
                 }
             });
         }

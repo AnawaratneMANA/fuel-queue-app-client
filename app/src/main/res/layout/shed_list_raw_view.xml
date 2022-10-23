@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-android:id="@+id/fuelStationRawViewOuterLayout"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:gravity="center_vertical"
-android:orientation="vertical">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/StationRawViewOuterLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="0dp"
+    android:layout_marginBottom="0dp"
+    android:orientation="vertical">
 
 <androidx.cardview.widget.CardView
     android:id="@+id/fuelStationRowCard"
@@ -13,7 +15,7 @@ android:orientation="vertical">
     android:layout_height="60dp"
     android:layout_margin="5dp"
     android:elevation="8dp"
-    app:cardBackgroundColor="#D6D6D6"
+    app:cardBackgroundColor="#FFFFFF"
     app:cardCornerRadius="10dp">
 
     <LinearLayout
@@ -40,7 +42,7 @@ android:orientation="vertical">
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            app:cardBackgroundColor="#673AB7"
+            app:cardBackgroundColor="#00D60A"
             android:layout_marginTop="0dp"
             app:cardCornerRadius="30dp"
             android:layout_gravity="center"
@@ -50,12 +52,11 @@ android:orientation="vertical">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-
                 android:padding="2px"
                 android:layout_marginStart="3dp"
                 android:layout_marginEnd="3dp"
                 android:backgroundTint="@color/white"
-                android:text="Rathmalana"
+                android:text="Available"
                 android:textStyle="bold"
                 android:textColor="#FFFFFF"
                 android:textSize="15sp"/>
@@ -73,4 +74,4 @@ android:orientation="vertical">
 </androidx.cardview.widget.CardView>
 
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+</LinearLayout>

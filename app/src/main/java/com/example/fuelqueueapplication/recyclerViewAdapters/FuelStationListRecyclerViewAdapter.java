@@ -41,8 +41,6 @@ public class FuelStationListRecyclerViewAdapter extends RecyclerView.Adapter<Fue
     @Override
     public void onBindViewHolder(@NonNull FuelStationListRecyclerViewAdapter.MyViewHolder holder, int position) {
         holder.location.setText(stationResponseList.get(position).getLocation());
-        holder.endTime.setText(stationResponseList.get(position).getEndingTime());
-        holder.StartingTime.setText(stationResponseList.get(position).getStartingTime());
     }
 
     @Override
@@ -93,7 +91,7 @@ public class FuelStationListRecyclerViewAdapter extends RecyclerView.Adapter<Fue
             super(itemView);
 
             location = itemView.findViewById(R.id.fuelStationLocation);
-            layout = itemView.findViewById(R.id.fuelStationRawViewOuterLayout);
+            layout = itemView.findViewById(R.id.StationRawViewOuterLayout);
 
             layout.setOnClickListener(new View.OnClickListener() {
                 @Override

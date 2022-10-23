@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -101,6 +102,7 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "CAN'T_SAVE_USER", Toast.LENGTH_SHORT).show();
                     } else if (userRegisterResponse.getRole().equals("user")) {
                         Intent intent = new Intent(LoginActivity.this, FuelStationActivity.class);
+                        intent.putExtra("userId", userRegisterResponse.getId());
                         startActivity(intent);
                         finish();
                     }

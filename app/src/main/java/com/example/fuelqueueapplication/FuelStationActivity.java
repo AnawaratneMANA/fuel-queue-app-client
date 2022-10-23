@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.fuelqueueapplication.api.ApiClient;
@@ -25,6 +27,7 @@ public class FuelStationActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     FuelStationListRecyclerViewAdapter recyclerViewAdapter;
     FuelStationInterface fuelStationInterface;
+    String userId;
 
 
     @Override
@@ -33,6 +36,8 @@ public class FuelStationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fuel_station);
         getSupportActionBar().setTitle("All Fuel Stations");
         recyclerView = findViewById(R.id.FuelStationRecyclerView);
+        Intent intent = getIntent();
+        userId = intent.getStringExtra("userId");
 
         fuelStationInterface =  ApiClient.getClient().create(FuelStationInterface.class);
         Call<List<FuelStationResponse>> listCall = fuelStationInterface.getAllFuelStations();
@@ -42,11 +47,6 @@ public class FuelStationActivity extends AppCompatActivity {
             public void onResponse(Call<List<FuelStationResponse>> call, Response<List<FuelStationResponse>> response) {
                 if (response.isSuccessful()) {
                     List<FuelStationResponse> stationResponseList = response.body();
-                    System.out.println(stationResponseList);
-                    int i;
-                    for(i=0;i<stationResponseList.size(); i++){
-                        System.out.println(stationResponseList.get(i).getLocation());
-                    }
                     recyclerViewAdapter = new FuelStationListRecyclerViewAdapter(FuelStationActivity.this,stationResponseList);
                     recyclerView.setAdapter(recyclerViewAdapter);
                 }else {
@@ -85,5 +85,11 @@ public class FuelStationActivity extends AppCompatActivity {
             }
         });
         return true;
+    }
+
+    public void onClick(View view) {
+        Intent intent = new Intent(FuelStationActivity.this, UserHistoryActivity.class);
+        intent.putExtra("userId", userId);
+        startActivity(intent);
     }
 }
