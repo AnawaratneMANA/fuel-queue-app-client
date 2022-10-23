@@ -37,7 +37,6 @@ public class RegistrationActivity extends AppCompatActivity {
     ArrayAdapter<String> arrayAdapter;
     String[] items = {"Car","Van", "Bus","Motorcycle", "Three Wheel", "Lorry"};
     LoginInterface loginInterface;
-    DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +132,7 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<UserRegisterResponse> call, Response<UserRegisterResponse> response) {
                 if(response.isSuccessful()){
+                    DBHelper dbHelper = new DBHelper(RegistrationActivity.this);
                     boolean result = dbHelper.saveUser(username,email,password,vehicleType,"user");
                     if(result){
                         Toast.makeText(RegistrationActivity.this, "CAN'T_SAVE", Toast.LENGTH_SHORT).show();
