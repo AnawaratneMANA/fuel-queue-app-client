@@ -72,7 +72,7 @@ public class FuelStationInsertForm extends AppCompatActivity {
             picker.addOnPositiveButtonClickListener(dialog -> {
                 int newHour = picker.getHour();
                 int newMinute = picker.getMinute();
-                editTextStartingTime.setText(newHour + "h "+ newMinute + "m ");
+                editTextStartingTime.setText(newHour + ": "+ newMinute);
             });
         } else if(selection == 1){
             picker.addOnPositiveButtonClickListener(dialog -> {
