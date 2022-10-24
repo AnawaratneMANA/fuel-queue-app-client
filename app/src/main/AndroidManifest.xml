@@ -14,17 +14,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FuelQueueApplication">
         <activity
+            android:name=".CreateFuelRequestPage"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".UserHistoryActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".FuelStationInsertForm"
-            android:exported="false">
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".FuelStationActivity"
-            android:exported="false">
-
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".LoginActivity"
             android:exported="true">
