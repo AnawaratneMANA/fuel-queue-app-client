@@ -5,6 +5,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.fuelqueueapplication.api.ApiClient;
+import com.example.fuelqueueapplication.api.interfaces.FuelStationInterface;
+import com.example.fuelqueueapplication.api.response.FuelStationDetailsResponse;
+import com.example.fuelqueueapplication.api.response.FuelStationResponse;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FuelStationDetailActivity extends AppCompatActivity {
     String id,location;
@@ -16,6 +28,12 @@ public class FuelStationDetailActivity extends AppCompatActivity {
     TextView textViewServiceEndAt;
     TextView textViewFuelType;
     TextView textViewVehicleCount;
+
+    // API call interface
+    FuelStationInterface fuelStationInterface;
+
+    // Get the Station ID from the Intent
+
 
 
     @Override
@@ -34,6 +52,32 @@ public class FuelStationDetailActivity extends AppCompatActivity {
         textViewServiceEndAt = findViewById(R.id.endTimeDetails);
         textViewFuelType = findViewById(R.id.fuelTypeDetails);
         textViewVehicleCount = findViewById(R.id.noOfVehiclesInQueueDetails);
+
+        // API Call
+        //TODO: Pass the ID from the the intent call
+        fuelStationInterface =  ApiClient.getClient().create(FuelStationInterface.class);
+        Call<FuelStationDetailsResponse> fuelStationDetails = fuelStationInterface.getFuelStationDetails("634e0d91ab08525cb4547634");
+        fuelStationDetails.enqueue(new Callback<FuelStationDetailsResponse>() {
+            @Override
+            public void onResponse(Call<FuelStationDetailsResponse> call, Response<FuelStationDetailsResponse> response) {
+                if(response.isSuccessful()){
+                    FuelStationDetailsResponse fuelStationDetailsResponse = response.body();
+
+                    // Bind details to the interface elements
+                    textViewFuelStationNameDetails.setText(fuelStationDetailsResponse.getFuelStationName());
+                    textViewStationOwner.setText(fuelStationDetailsResponse.getStationOwner());
+                    textViewServiceStartAt.setText(fuelStationDetailsResponse.getServiceStartAt());
+                    textViewServiceEndAt.setText(fuelStationDetailsResponse.getServiceEndAt());
+                    textViewFuelType.setText(fuelStationDetailsResponse.getFuelType());
+                    textViewVehicleCount.setText(String.valueOf(fuelStationDetailsResponse.getVehicleCount()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<FuelStationDetailsResponse> call, Throwable t) {
+                Toast.makeText(FuelStationDetailActivity.this, "ERROR: CAN'T GET THE DETAILS!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 }
