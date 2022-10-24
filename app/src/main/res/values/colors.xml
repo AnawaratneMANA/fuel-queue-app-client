@@ -8,4 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#EC1D1D</color>
+    <color name="available">#00D60A</color>
+    <color name="pending">#FFC107</color>
+    <color name="close">#6F7570</color>
 </resources>
