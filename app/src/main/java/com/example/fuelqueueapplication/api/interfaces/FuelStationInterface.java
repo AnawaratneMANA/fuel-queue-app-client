@@ -20,7 +20,3 @@ public interface FuelStationInterface {
     @GET("/api/FuelStation/get/{id}")
     Call<FuelStationDetailsResponse> getFuelStationDetails(@Path("id") String id);
 }
-
-
-// TODO: Interface define #1
-// TODO: request / response define
