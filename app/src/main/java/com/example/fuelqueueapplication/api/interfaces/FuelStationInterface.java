@@ -1,8 +1,4 @@
 package com.example.fuelqueueapplication.api.interfaces;
-
-import com.example.fuelqueueapplication.api.request.FuelRequestRequest;
-import com.example.fuelqueueapplication.api.request.StationTimeUpdateRequest;
-import com.example.fuelqueueapplication.api.request.UserRegisterRequest;
 import com.example.fuelqueueapplication.api.response.FuelStationDetailsResponse;
 import com.example.fuelqueueapplication.api.response.FuelStationResponse;
 import com.example.fuelqueueapplication.api.response.UserHistoryResponse;
