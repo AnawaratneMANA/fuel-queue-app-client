@@ -82,7 +82,6 @@ public class FuelStationInsertForm extends AppCompatActivity {
             });
         }
 
-
         picker.show(getSupportFragmentManager(), "TAG");
     }
 }

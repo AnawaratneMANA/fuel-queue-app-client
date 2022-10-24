@@ -39,6 +39,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/fuelStationNameDetails"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="IOC Fuel Station - Rathmalana"
@@ -66,6 +67,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/stationOwnerNameDetails"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Nirmith Akash"
@@ -93,6 +95,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/startTimeDetails"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="2022/10/29,  7AM"
@@ -120,6 +123,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/endTimeDetails"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="2022/10/19, 12PM"
@@ -147,6 +151,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/fuelTypeDetails"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Petrol 95 OCT"
@@ -174,6 +179,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/noOfVehiclesInQueueDetails"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="12"
