@@ -39,6 +39,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/stationNameDetailsRequest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="IOC Fuel Station - Rathmalana"
@@ -66,6 +67,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/stationOwnerNameDetailsRequest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Nirmith Akash"
@@ -93,6 +95,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/startingTimeDetailsRequest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="2022/10/29,  7AM"
@@ -120,6 +123,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/endingTimeDetailsRequest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="2022/10/19, 12PM"
@@ -147,6 +151,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/fuelTypeDetailsRequest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Petrol 95 OCT"
@@ -173,6 +178,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
                 <TextView
+                    android:id="@+id/vehiclesInQueueDetailsRequest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="12"
@@ -194,6 +200,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
                 <TextView
+                    android:id="@+id/waitingTimeInTheQueueDetailsRequest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="~4h"
@@ -210,7 +217,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <Button
-            android:id="@+id/enrollButton"
+            android:id="@+id/placeRequestButton"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -222,7 +229,7 @@
             android:text="Place Request" />
 
         <Button
-            android:id="@+id/exitButton"
+            android:id="@+id/exitButtonDetailsRequest"
             android:layout_width="match_parent"
             android:backgroundTint="@color/red"
             android:layout_height="50dp"
