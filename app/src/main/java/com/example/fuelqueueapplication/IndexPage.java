@@ -11,6 +11,7 @@ public class IndexPage extends AppCompatActivity {
 
     Button stationDetails;
     Button stationList;
+    Button stationDetailsRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +20,7 @@ public class IndexPage extends AppCompatActivity {
 
         stationDetails = findViewById(R.id.stationDetailsButtonDev);
         stationList = findViewById(R.id.stationListButtonDev);
+        stationDetailsRequest = findViewById(R.id.stationDetailsRequestDev);
 
         stationDetails.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,6 +34,14 @@ public class IndexPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), FuelStationActivity.class);
+                view.getContext().startActivity(intent);
+            }
+        });
+
+        stationDetailsRequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), FuelStationDetailActivity.class);
                 view.getContext().startActivity(intent);
             }
         });

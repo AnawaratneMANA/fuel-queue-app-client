@@ -7,7 +7,6 @@
     android:padding="20dp"
     android:orientation="vertical"
     tools:context=".IndexPage">
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,12 +20,24 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Dev Navigation"
-        android:textColor="@color/purple_500"
-        android:textSize="23sp"
-        android:textStyle="italic"
+        android:text="*This will be removed after navigation is properly implemented."
+        android:textColor="@color/red"
+        android:textSize="17sp"
+        android:textStyle="italic|bold"
         android:paddingStart="10dp"
         android:layout_marginBottom="20dp"/>
+
+    <Button
+        android:id="@+id/loginDev"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="User Login" />
+
+    <Button
+        android:id="@+id/registrationDev"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="User Registration" />
 
     <Button
         android:id="@+id/stationDetailsButtonDev"
@@ -40,4 +51,33 @@
         android:layout_height="60dp"
         android:text="Station List" />
 
+    <Button
+        android:id="@+id/stationDetailsRequestDev"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Station Details Request" />
+
+    <Button
+        android:id="@+id/createFuelRequestDev"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Create Fuel Request" />
+
+    <Button
+        android:id="@+id/fuelRequestsDev"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Fuel requests" />
+
+    <Button
+        android:id="@+id/queueListDev"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Queue List" />
+
+    <Button
+        android:id="@+id/updateFuelStationDev"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Update Fuel Station" />
 </LinearLayout>
