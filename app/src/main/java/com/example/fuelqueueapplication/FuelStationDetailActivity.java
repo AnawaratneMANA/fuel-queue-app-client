@@ -10,9 +10,6 @@ import android.widget.Toast;
 import com.example.fuelqueueapplication.api.ApiClient;
 import com.example.fuelqueueapplication.api.interfaces.FuelStationInterface;
 import com.example.fuelqueueapplication.api.response.FuelStationDetailsResponse;
-import com.example.fuelqueueapplication.api.response.FuelStationResponse;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -63,11 +60,15 @@ public class FuelStationDetailActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
                     FuelStationDetailsResponse fuelStationDetailsResponse = response.body();
 
+                    //Debug
+                    System.out.println(fuelStationDetailsResponse.getEndingTime());
+                    Toast.makeText(FuelStationDetailActivity.this, "DEBUG: " + fuelStationDetailsResponse.getEndingTime(), Toast.LENGTH_SHORT).show();
+
                     // Bind details to the interface elements
-                    textViewFuelStationNameDetails.setText(fuelStationDetailsResponse.getFuelStationName());
+                    textViewFuelStationNameDetails.setText("IOC Filling Station");
                     textViewStationOwner.setText(fuelStationDetailsResponse.getStationOwner());
-                    textViewServiceStartAt.setText(fuelStationDetailsResponse.getServiceStartAt());
-                    textViewServiceEndAt.setText(fuelStationDetailsResponse.getServiceEndAt());
+                    textViewServiceStartAt.setText(fuelStationDetailsResponse.getStartingTime());
+                    textViewServiceEndAt.setText(fuelStationDetailsResponse.getEndingTime());
                     textViewFuelType.setText(fuelStationDetailsResponse.getFuelType());
                     textViewVehicleCount.setText(String.valueOf(fuelStationDetailsResponse.getVehicleCount()));
                 }

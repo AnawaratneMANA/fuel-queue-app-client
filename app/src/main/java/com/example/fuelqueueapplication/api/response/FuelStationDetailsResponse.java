@@ -4,10 +4,19 @@ public class FuelStationDetailsResponse {
     private String id;
     private String fuelStationName;
     private String stationOwner;
-    private String serviceStartAt;
-    private String serviceEndAt;
+    private String location;
+    private String startingTime;
+    private String endingTime;
     private String fuelType;
     private int vehicleCount;
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
     public String getId() {
         return id;
@@ -33,20 +42,20 @@ public class FuelStationDetailsResponse {
         this.stationOwner = stationOwner;
     }
 
-    public String getServiceStartAt() {
-        return serviceStartAt;
+    public String getStartingTime() {
+        return startingTime;
     }
 
-    public void setServiceStartAt(String serviceStartAt) {
-        this.serviceStartAt = serviceStartAt;
+    public void setStartingTime(String startingTime) {
+        this.startingTime = startingTime;
     }
 
-    public String getServiceEndAt() {
-        return serviceEndAt;
+    public String getEndingTime() {
+        return endingTime;
     }
 
-    public void setServiceEndAt(String serviceEndAt) {
-        this.serviceEndAt = serviceEndAt;
+    public void setEndingTime(String endingTime) {
+        this.endingTime = endingTime;
     }
 
     public String getFuelType() {
