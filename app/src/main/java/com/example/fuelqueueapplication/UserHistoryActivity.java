@@ -5,17 +5,19 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.example.fuelqueueapplication.api.ApiClient;
 import com.example.fuelqueueapplication.api.interfaces.FuelStationInterface;
 import com.example.fuelqueueapplication.api.response.FuelStationResponse;
+import com.example.fuelqueueapplication.api.response.UserHistoryResponse;
 import com.example.fuelqueueapplication.recyclerViewAdapters.FuelStationListRecyclerViewAdapter;
+import com.example.fuelqueueapplication.recyclerViewAdapters.UserHistoryRecyclerViewAdapter;
 
 import java.util.List;
 
@@ -23,45 +25,43 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FuelStationActivity extends AppCompatActivity {
+public class UserHistoryActivity extends AppCompatActivity {
     RecyclerView recyclerView;
-    FuelStationListRecyclerViewAdapter recyclerViewAdapter;
+    UserHistoryRecyclerViewAdapter recyclerViewAdapter;
     FuelStationInterface fuelStationInterface;
     String userId;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fuel_station);
-        getSupportActionBar().setTitle("All Fuel Stations");
-        recyclerView = findViewById(R.id.FuelStationRecyclerView);
+        setContentView(R.layout.activity_user_history);
+        getSupportActionBar().setTitle("All History");
+        recyclerView = findViewById(R.id.historyRecyclerView);
         Intent intent = getIntent();
         userId = intent.getStringExtra("userId");
 
         fuelStationInterface =  ApiClient.getClient().create(FuelStationInterface.class);
-        Call<List<FuelStationResponse>> listCall = fuelStationInterface.getAllFuelStations();
+        Call<List<UserHistoryResponse>> listCall = fuelStationInterface.getUserHistory(userId);
 
-        listCall.enqueue(new Callback<List<FuelStationResponse>>() {
+        listCall.enqueue(new Callback<List<UserHistoryResponse>>() {
             @Override
-            public void onResponse(Call<List<FuelStationResponse>> call, Response<List<FuelStationResponse>> response) {
-                if (response.isSuccessful()) {
-                    List<FuelStationResponse> stationResponseList = response.body();
-                    recyclerViewAdapter = new FuelStationListRecyclerViewAdapter(FuelStationActivity.this,stationResponseList);
+            public void onResponse(Call<List<UserHistoryResponse>> call, Response<List<UserHistoryResponse>> response) {
+                if(response.isSuccessful()){
+                    List<UserHistoryResponse> responseList = response.body();
+                    recyclerViewAdapter = new UserHistoryRecyclerViewAdapter(UserHistoryActivity.this,responseList);
                     recyclerView.setAdapter(recyclerViewAdapter);
                 }else {
-                    Toast.makeText(FuelStationActivity.this, "CAN'T_GET_THE_FUEL_STATIONS", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserHistoryActivity.this, "CAN'T_GET_THE_FUEL_STATIONS", Toast.LENGTH_SHORT).show();
+
                 }
             }
 
             @Override
-            public void onFailure(Call<List<FuelStationResponse>> call, Throwable t) {
-                Toast.makeText(FuelStationActivity.this, "INTERNAL_SERVER_ERROR", Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<List<UserHistoryResponse>> call, Throwable t) {
+                Toast.makeText(UserHistoryActivity.this, "INTERNAL_SERVER_ERROR", Toast.LENGTH_SHORT).show();
 
             }
         });
-
-
     }
 
     @Override
@@ -85,11 +85,5 @@ public class FuelStationActivity extends AppCompatActivity {
             }
         });
         return true;
-    }
-
-    public void onClick(View view) {
-        Intent intent = new Intent(FuelStationActivity.this, UserHistoryActivity.class);
-        intent.putExtra("userId", userId);
-        startActivity(intent);
     }
 }
