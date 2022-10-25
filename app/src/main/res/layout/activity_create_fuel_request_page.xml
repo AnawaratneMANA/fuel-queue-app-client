@@ -37,7 +37,7 @@
         android:layout_marginTop="40dp"
         android:fontFamily="sans-serif-medium"
         android:text="Filling Station"
-        android:textColor="#2a0e45"
+        android:textColor="@color/main_color"
         android:textSize="28sp" />
 
     <TextView
@@ -48,12 +48,12 @@
         android:fontFamily="sans-serif-medium"
         android:textFontWeight="@integer/material_motion_duration_long_1"
         android:text="IOC Filling station"
-        android:textColor="#2a0e45"
+        android:textColor="#878787"
         android:textSize="24sp" />
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/registerVehicleTypeInputLayout"
+        android:id="@+id/pumpNoInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -62,18 +62,17 @@
         android:layout_marginEnd="32dp"
         android:hint="Select the Pump .."
         app:startIconTint="@color/purple_500"
-
         >
 
         <AutoCompleteTextView
-            android:id="@+id/rVehicleTypeInput"
+            android:id="@+id/pumpNoInput"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/registerUsernameInputLayout"
+        android:id="@+id/amountInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -86,7 +85,7 @@
         app:startIconTint="@color/purple_500">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/rUsernameInput"
+            android:id="@+id/amountInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>

@@ -2,7 +2,9 @@ package com.example.fuelqueueapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 public class ThankYouActivity extends AppCompatActivity {
 
@@ -10,5 +12,11 @@ public class ThankYouActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thank_you);
+    }
+
+    public void onClick(View view) {
+        Intent intent = new Intent(ThankYouActivity.this, FuelStationActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

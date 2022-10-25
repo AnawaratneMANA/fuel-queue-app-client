@@ -3,11 +3,11 @@ package com.example.fuelqueueapplication.api.request;
 public class FuelRequestRequest {
 
     private String userId;
-    private int noOfLiters;
+    private float noOfLiters;
     private String pumpId;
     private String approvalStatus;
 
-    public FuelRequestRequest(String userId, int noOfLiters, String pumpId, String approvalStatus) {
+    public FuelRequestRequest(String userId, float noOfLiters, String pumpId, String approvalStatus) {
         this.userId = userId;
         this.noOfLiters = noOfLiters;
         this.pumpId = pumpId;
@@ -22,7 +22,7 @@ public class FuelRequestRequest {
         this.userId = userId;
     }
 
-    public int getNoOfLiters() {
+    public float getNoOfLiters() {
         return noOfLiters;
     }
 

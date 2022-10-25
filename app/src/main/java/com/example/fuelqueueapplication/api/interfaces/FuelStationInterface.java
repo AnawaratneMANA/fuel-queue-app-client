@@ -50,13 +50,13 @@ public interface FuelStationInterface {
 
     //Add to Queue (POST)
     @POST("/api/FuelStation/addFuelStationQueue")
-    void enrollToQueue(@Body FuelQueueRequest fuelQueueRequest);
+    Call<Void> enrollToQueue(@Body FuelQueueRequest fuelQueueRequest);
 
     //TODO: Add to History (POST)
 
     //Remove from the Queue. (DELETE)
     @DELETE("/api/FuelStation/removeFuelQueue/{id}")
-    void fuelQueueRemove(@Path("id") String id,@Body FuelQueueRemoveRequest fuelQueueRemoveRequest);
+    Call<Void> fuelQueueRemove(@Path("id") String id,@Body FuelQueueRemoveRequest fuelQueueRemoveRequest);
 
     //Get List of Request (GET)
     @GET("/api/FuelStation/getFuelRequests")
