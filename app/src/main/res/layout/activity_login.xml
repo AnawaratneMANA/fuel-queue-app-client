@@ -118,7 +118,7 @@
             android:minHeight="48dp"
             android:onClick="linkOnClick"
             android:text="Register Now"
-            android:textColor="#9C6DFF"
+            android:textColor="#4DCEFA"
             android:textSize="15sp" />
     </LinearLayout>
 

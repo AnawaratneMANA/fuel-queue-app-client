@@ -51,7 +51,6 @@ public class FuelStationDetailActivity extends AppCompatActivity {
         textViewVehicleCount = findViewById(R.id.noOfVehiclesInQueueDetails);
 
         // API Call
-        //TODO: Pass the ID from the the intent call
         fuelStationInterface =  ApiClient.getClient().create(FuelStationInterface.class);
         Call<FuelStationDetailsResponse> fuelStationDetails = fuelStationInterface.getFuelStationDetails(id);
         fuelStationDetails.enqueue(new Callback<FuelStationDetailsResponse>() {

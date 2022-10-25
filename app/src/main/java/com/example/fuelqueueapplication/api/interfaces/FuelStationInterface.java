@@ -1,9 +1,13 @@
 package com.example.fuelqueueapplication.api.interfaces;
+import com.example.fuelqueueapplication.api.request.FuelQueueRemoveRequest;
 import com.example.fuelqueueapplication.api.request.FuelQueueRequest;
 import com.example.fuelqueueapplication.api.request.FuelRequestRequest;
 import com.example.fuelqueueapplication.api.request.StationTimeUpdateRequest;
+import com.example.fuelqueueapplication.api.response.FuelQueueResponse;
+import com.example.fuelqueueapplication.api.response.FuelRequestResponse;
 import com.example.fuelqueueapplication.api.response.FuelStationDetailsResponse;
 import com.example.fuelqueueapplication.api.response.FuelStationResponse;
+import com.example.fuelqueueapplication.api.response.QueueResponse;
 import com.example.fuelqueueapplication.api.response.UserHistoryResponse;
 import com.example.fuelqueueapplication.api.response.UserRegisterResponse;
 
@@ -12,6 +16,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -33,18 +38,22 @@ public interface FuelStationInterface {
     @POST("/api/FuelStation/AddFuelRequest")
     Call<FuelRequestRequest> createRequest(@Body FuelRequestRequest fuelRequestRequest);
 
-
     //TODO: Enroll to the Queue. (POST)
     @POST("/api/FuelStation/addFuelStationQueue")
     Call<FuelQueueRequest> createQueueRequest(@Body FuelQueueRequest fuelQueueRequest);
 
     //TODO: Remove from the Queue. (DELETE)
     //TODO: Get Queue list (GET)
+    @GET("/api/FuelStation/getFuelQueue")
+    Call<List<QueueResponse>> getQueueList();
     //TODO: Add to Queue (POST)
+    @POST("/api/FuelStation/addFuelStationQueue")
+    void enrollToQueue(@Body FuelQueueRequest fuelQueueRequest);
+    //TODO: Remove from the Queue. (DELETE)
     //TODO: Add to History (POST)
+    @DELETE("/api/FuelStation/removeFuelQueue/{id}")
+    void fuelQueueRemove(@Path("id") String id,@Body FuelQueueRemoveRequest fuelQueueRemoveRequest);
     //TODO: Get List of Request (GET)
-
-
-
-
+    @GET("/api/FuelStation/getFuelRequests")
+    Call<List<FuelRequestResponse>> getFuelRequest();
 }

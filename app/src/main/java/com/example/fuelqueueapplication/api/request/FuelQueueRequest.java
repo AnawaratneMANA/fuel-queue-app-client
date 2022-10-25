@@ -1,20 +1,21 @@
 package com.example.fuelqueueapplication.api.request;
 
 public class FuelQueueRequest {
-
-
-    private String VehicleNumber;
     private String StationId;
+    private String VehicleNumber;
     private String UserId;
     private String PumpId;
+    private String Status;
+    private String StartingDateTime;
 
-
-    public FuelQueueRequest(String vehicleNumber, String stationId, String userId, String pumpId) {
-        VehicleNumber = vehicleNumber;
+    public FuelQueueRequest(String stationId, String vehicleNumber, String userId, String pumpId,
+                            String status, String startingDateTime) {
         StationId = stationId;
+        VehicleNumber = vehicleNumber;
         UserId = userId;
         PumpId = pumpId;
-    }
+        Status = status;
+        StartingDateTime = startingDateTime;
 
     public String getVehicleNumber() {
         return VehicleNumber;
