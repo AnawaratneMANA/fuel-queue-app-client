@@ -25,7 +25,7 @@
             android:layout_marginStart="2dp"
             android:padding="5dp"
             android:text="Mahaharagama Filling Station"
-            android:textColor="#E91E63"
+            android:textColor="@color/main_color"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal"/>
