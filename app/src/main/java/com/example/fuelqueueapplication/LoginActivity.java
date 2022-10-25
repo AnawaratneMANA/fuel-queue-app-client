@@ -105,8 +105,14 @@ public class LoginActivity extends AppCompatActivity {
                         intent.putExtra("userId", userRegisterResponse.getId());
                         startActivity(intent);
                         finish();
+                    } else if (userRegisterResponse.getRole().equals("Owner")) {
+                        Intent intent = new Intent(LoginActivity.this, FuelStationListOwnerActivity.class);
+                        intent.putExtra("userId", userRegisterResponse.getId());
+                        startActivity(intent);
+                        finish();
+                    }else{
+                        Toast.makeText(LoginActivity.this, "error", Toast.LENGTH_SHORT).show();
                     }
-
                 } else {
                     passwordInputLayout.setError(" ");
                     usernameInput.setError(" ");
