@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fuelqueueapplication.FuelStationDetailActivity;
 import com.example.fuelqueueapplication.FuelStationInsertForm;
+import com.example.fuelqueueapplication.FuelStationQueueListActivity;
 import com.example.fuelqueueapplication.R;
 import com.example.fuelqueueapplication.api.response.FuelStationResponse;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -96,6 +97,15 @@ public class FuelStationOwnersListViewAdapter extends RecyclerView.Adapter<FuelS
             // Register View Items
             Location = itemView.findViewById(R.id.FuelStationOwnerLocationName);
             Layout = itemView.findViewById(R.id.FuelStationOwnerLayout);
+            Layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String id = stationResponseList.get(getAdapterPosition()).getId();
+                    Intent intent = new Intent(context, FuelStationQueueListActivity.class);
+                    intent.putExtra("id", id);
+                    context.startActivity(intent);
+                }
+            });
             UpdateButton = itemView.findViewById(R.id.SelectUpdateStationButton);
             UpdateButton.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -60,8 +60,6 @@ public class FuelStationActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     @Override
