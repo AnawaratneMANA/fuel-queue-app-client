@@ -105,8 +105,9 @@ public class CreateFuelRequestPage extends AppCompatActivity {
     }
 
     private void addHistory() {
+        String fuelAmount = String.valueOf(amount);
         String endTime = dateTimeOperations.getDate();
-        FuelQueueRemoveRequest fuelQueueRemoveRequest = new FuelQueueRemoveRequest(endTime, amount+"L");
+        FuelQueueRemoveRequest fuelQueueRemoveRequest = new FuelQueueRemoveRequest(endTime, fuelAmount+"L");
         Call<Void> call = fuelStationInterface.fuelQueueRemove(queueId,fuelQueueRemoveRequest);
         call.enqueue(new Callback<Void>() {
             @Override
