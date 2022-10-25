@@ -87,14 +87,14 @@ public class FuelStationListOwnerActivity extends AppCompatActivity {
         return true;
     }
 
-    //TODO: Adapter and the List view should be made to Request List.
     public void requestListOnClick(View view){
         Intent intent = new Intent(FuelStationListOwnerActivity.this, FuelStationRequestListActivity.class);
         startActivity(intent);
     }
 
-    public void queueListOnClick(View view){
-        Intent intent = new Intent(FuelStationListOwnerActivity.this, FuelStationQueueListActivity.class);
+    public void logOut(View view){
+        Intent intent = new Intent(FuelStationListOwnerActivity.this, LoginActivity.class);
         startActivity(intent);
+        finish();
     }
 }
