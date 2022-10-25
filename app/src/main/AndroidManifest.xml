@@ -24,7 +24,7 @@
             android:name=".UserHistoryActivity"
             android:exported="false" />
         <activity
-            android:name=".IndexPage"
+            android:name=".LoginActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
@@ -58,7 +58,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".IndexPage"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
