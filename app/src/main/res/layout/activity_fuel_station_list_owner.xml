@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".FuelStationListOwnerActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/FuelStationOwnerListRecycleView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/FuelStationOwnerListFloatingButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginTop="-80dp"
+        android:layout_marginEnd="20dp"
+        android:onClick="onClick"
+        android:src="@drawable/ic_baseline_history_24"
+        android:tint="@color/purple_500"
+        app:fabSize="auto"
+        app:rippleColor="@color/purple_500"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+
+</LinearLayout>
