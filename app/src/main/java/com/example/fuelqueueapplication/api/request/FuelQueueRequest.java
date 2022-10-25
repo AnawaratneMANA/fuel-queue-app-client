@@ -16,5 +16,36 @@ public class FuelQueueRequest {
         PumpId = pumpId;
         Status = status;
         StartingDateTime = startingDateTime;
+
+    public String getVehicleNumber() {
+        return VehicleNumber;
+    }
+
+    public void setVehicleNumber(String vehicleNumber) {
+        VehicleNumber = vehicleNumber;
+    }
+
+    public String getStationId() {
+        return StationId;
+    }
+
+    public void setStationId(String stationId) {
+        StationId = stationId;
+    }
+
+    public String getUserId() {
+        return UserId;
+    }
+
+    public void setUserId(String userId) {
+        UserId = userId;
+    }
+
+    public String getPumpId() {
+        return PumpId;
+    }
+
+    public void setPumpId(String pumpId) {
+        PumpId = pumpId;
     }
 }
