@@ -1,4 +1,5 @@
 package com.example.fuelqueueapplication.api.interfaces;
+import com.example.fuelqueueapplication.api.request.FuelQueueRequest;
 import com.example.fuelqueueapplication.api.request.FuelRequestRequest;
 import com.example.fuelqueueapplication.api.request.StationTimeUpdateRequest;
 import com.example.fuelqueueapplication.api.response.FuelStationDetailsResponse;
@@ -32,12 +33,18 @@ public interface FuelStationInterface {
     @POST("/api/FuelStation/AddFuelRequest")
     Call<FuelRequestRequest> createRequest(@Body FuelRequestRequest fuelRequestRequest);
 
+
     //TODO: Enroll to the Queue. (POST)
+    @POST("/api/FuelStation/addFuelStationQueue")
+    Call<FuelQueueRequest> createQueueRequest(@Body FuelQueueRequest fuelQueueRequest);
+
     //TODO: Remove from the Queue. (DELETE)
     //TODO: Get Queue list (GET)
     //TODO: Add to Queue (POST)
     //TODO: Add to History (POST)
     //TODO: Get List of Request (GET)
+
+
 
 
 }
