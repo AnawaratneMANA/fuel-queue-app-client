@@ -87,9 +87,15 @@ public class FuelStationActivity extends AppCompatActivity {
         return true;
     }
 
-    public void onClick(View view) {
+    public void userHistoryOnClick(View view) {
         Intent intent = new Intent(FuelStationActivity.this, UserHistoryActivity.class);
         intent.putExtra("userId", userId);
         startActivity(intent);
+    }
+
+    public void logOutOnClick(View view) {
+        Intent intent = new Intent(FuelStationActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
