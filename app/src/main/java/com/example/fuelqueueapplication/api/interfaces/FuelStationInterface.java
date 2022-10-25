@@ -39,6 +39,9 @@ public interface FuelStationInterface {
     Call<FuelRequestRequest> createRequest(@Body FuelRequestRequest fuelRequestRequest);
 
     //TODO: Enroll to the Queue. (POST)
+    @POST("/api/FuelStation/addFuelStationQueue")
+    Call<FuelQueueRequest> createQueueRequest(@Body FuelQueueRequest fuelQueueRequest);
+
     //TODO: Remove from the Queue. (DELETE)
     //TODO: Get Queue list (GET)
     @GET("/api/FuelStation/getFuelQueue")
