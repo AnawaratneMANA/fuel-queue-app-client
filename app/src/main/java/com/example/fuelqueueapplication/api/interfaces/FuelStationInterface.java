@@ -7,6 +7,7 @@ import com.example.fuelqueueapplication.api.response.FuelQueueResponse;
 import com.example.fuelqueueapplication.api.response.FuelRequestResponse;
 import com.example.fuelqueueapplication.api.response.FuelStationDetailsResponse;
 import com.example.fuelqueueapplication.api.response.FuelStationResponse;
+import com.example.fuelqueueapplication.api.response.QueueResponse;
 import com.example.fuelqueueapplication.api.response.UserHistoryResponse;
 import com.example.fuelqueueapplication.api.response.UserRegisterResponse;
 
@@ -38,6 +39,10 @@ public interface FuelStationInterface {
     Call<FuelRequestRequest> createRequest(@Body FuelRequestRequest fuelRequestRequest);
 
     //TODO: Enroll to the Queue. (POST)
+    //TODO: Remove from the Queue. (DELETE)
+    //TODO: Get Queue list (GET)
+    @GET("/api/FuelStation/getFuelQueue")
+    Call<List<QueueResponse>> getQueueList();
     //TODO: Add to Queue (POST)
     @POST("/api/FuelStation/addFuelStationQueue")
     void enrollToQueue(@Body FuelQueueRequest fuelQueueRequest);
@@ -45,9 +50,6 @@ public interface FuelStationInterface {
     //TODO: Add to History (POST)
     @DELETE("/api/FuelStation/removeFuelQueue/{id}")
     void fuelQueueRemove(@Path("id") String id,@Body FuelQueueRemoveRequest fuelQueueRemoveRequest);
-    //TODO: Get Queue list (GET)
-    @GET("/api/FuelStation/getFuelQueue")
-    Call<List<FuelQueueResponse>> getFuelQueue();
     //TODO: Get List of Request (GET)
     @GET("/api/FuelStation/getFuelRequests")
     Call<List<FuelRequestResponse>> getFuelRequest();
