@@ -18,6 +18,7 @@ import com.example.fuelqueueapplication.api.interfaces.LoginInterface;
 import com.example.fuelqueueapplication.api.request.UserRegisterRequest;
 import com.example.fuelqueueapplication.api.response.UserRegisterResponse;
 import com.example.fuelqueueapplication.persistance.DBHelper;
+import com.example.fuelqueueapplication.util.Constants;
 import com.google.android.material.textfield.TextInputLayout;
 
 import retrofit2.Call;
@@ -30,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView errorMessage;
     EditText passwordInput, usernameInput;
     LoginInterface loginInterface;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+
+        sharedPreferences = getSharedPreferences(Constants.SHARED_PREFERENCE_NAME,MODE_PRIVATE);
 
         passwordInputLayout = findViewById(R.id.loginPasswordInputLayout);
         usernameInputLayout = findViewById(R.id.loginUsernameInputLayout);
@@ -97,6 +101,10 @@ public class LoginActivity extends AppCompatActivity {
                     boolean result = dbHelper.saveUser(userRegisterResponse.getId(),
                             userRegisterResponse.getUsername(),
                             userRegisterResponse.getRole());
+
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(Constants.USER_ID,userRegisterResponse.getId());
+                    editor.commit();
 
                     if (result) {
                         Toast.makeText(LoginActivity.this, "CAN'T_SAVE_USER", Toast.LENGTH_SHORT).show();
