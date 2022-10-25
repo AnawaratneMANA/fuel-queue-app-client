@@ -16,6 +16,7 @@ public class FuelQueueRequest {
         PumpId = pumpId;
         Status = status;
         StartingDateTime = startingDateTime;
+    }
 
     public String getVehicleNumber() {
         return VehicleNumber;
