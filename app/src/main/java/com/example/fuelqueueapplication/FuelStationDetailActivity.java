@@ -29,10 +29,6 @@ public class FuelStationDetailActivity extends AppCompatActivity {
     // API call interface
     FuelStationInterface fuelStationInterface;
 
-    // Get the Station ID from the Intent
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
