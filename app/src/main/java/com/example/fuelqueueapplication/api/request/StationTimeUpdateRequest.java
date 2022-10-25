@@ -4,6 +4,11 @@ public class StationTimeUpdateRequest {
     private String startingTime;
     private String endingTime;
 
+    // Default constructor
+    public StationTimeUpdateRequest (){
+
+    }
+
     public StationTimeUpdateRequest(String startingTime, String endingTime) {
         this.startingTime = startingTime;
         this.endingTime = endingTime;
