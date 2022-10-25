@@ -6,21 +6,33 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fuelqueueapplication.R;
+import com.example.fuelqueueapplication.api.ApiClient;
+import com.example.fuelqueueapplication.api.interfaces.FuelStationInterface;
+import com.example.fuelqueueapplication.api.request.ApprovalStatusUpdateRequest;
 import com.example.fuelqueueapplication.api.response.FuelRequestResponse;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class FuelRequestsListViewAdapter extends RecyclerView.Adapter<FuelRequestsListViewAdapter.MyViewHolder> implements Filterable {
     Context context;
     List<FuelRequestResponse> requestResponseList;
     List<FuelRequestResponse> requestResponseArrayList;
+
+    // API Interface
+    FuelStationInterface fuelStationInterface;
 
     public FuelRequestsListViewAdapter(Context context, List<FuelRequestResponse> queueResponseList){
         this.context = context;
@@ -84,10 +96,34 @@ public class FuelRequestsListViewAdapter extends RecyclerView.Adapter<FuelReques
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView textViewRequestedUserName;
         TextView textViewDescription;
+        ImageView StatusUpdateButton;
         public MyViewHolder(@NonNull View itemView){
             super(itemView);
+            fuelStationInterface =  ApiClient.getClient().create(FuelStationInterface.class);
             textViewRequestedUserName = itemView.findViewById(R.id.requestedUser);
             textViewDescription = itemView.findViewById(R.id.requestDescription);
+            StatusUpdateButton = itemView.findViewById(R.id.StatusUpdateButtonRequestList);
+            StatusUpdateButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Status update API call.
+                    String id = requestResponseList.get(getAdapterPosition()).getId();
+                    ApprovalStatusUpdateRequest approvalStatusUpdateRequest = new ApprovalStatusUpdateRequest();
+                    approvalStatusUpdateRequest.setApprovalStatus("approve");
+                    Call<Void> response = fuelStationInterface.updateApprovalStatus(id, approvalStatusUpdateRequest);
+                    response.enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            Toast.makeText(itemView.getContext(), "Approval Status Updated!", Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            Toast.makeText(itemView.getContext(), "Error Updating Approval Status!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            });
         }
     }
 }

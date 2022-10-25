@@ -1,4 +1,5 @@
 package com.example.fuelqueueapplication.api.interfaces;
+import com.example.fuelqueueapplication.api.request.ApprovalStatusUpdateRequest;
 import com.example.fuelqueueapplication.api.request.FuelQueueRemoveRequest;
 import com.example.fuelqueueapplication.api.request.FuelQueueRequest;
 import com.example.fuelqueueapplication.api.request.FuelRequestRequest;
@@ -59,4 +60,7 @@ public interface FuelStationInterface {
     //Get List of Request (GET)
     @GET("/api/FuelStation/getFuelRequests")
     Call<List<FuelRequestResponse>> getFuelRequest();
+
+    @PUT("/api/FuelStation/updateApprovalState/{id}")
+    Call<Void> updateApprovalStatus(@Path("id") String id, @Body ApprovalStatusUpdateRequest approvalStatusUpdateRequest);
 }
