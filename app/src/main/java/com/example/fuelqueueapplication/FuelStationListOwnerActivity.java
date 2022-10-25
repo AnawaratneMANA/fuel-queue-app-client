@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.fuelqueueapplication.api.ApiClient;
@@ -27,8 +28,6 @@ import retrofit2.Response;
 public class FuelStationListOwnerActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    //TODO: Will be used to navigate to Queue list, and Request list.
-    FloatingActionButton floatingActionButton;
     FuelStationOwnersListViewAdapter recyclerViewAdapter;
     FuelStationInterface fuelStationInterface;
     String userId;
@@ -86,5 +85,16 @@ public class FuelStationListOwnerActivity extends AppCompatActivity {
             }
         });
         return true;
+    }
+
+    //TODO: Adapter and the List view should be made to Request List.
+    public void requestListOnClick(View view){
+        Intent intent = new Intent(FuelStationListOwnerActivity.this, FuelStationRequestListActivity.class);
+        startActivity(intent);
+    }
+
+    public void queueListOnClick(View view){
+        Intent intent = new Intent(FuelStationListOwnerActivity.this, FuelStationQueueListActivity.class);
+        startActivity(intent);
     }
 }
