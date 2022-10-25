@@ -26,6 +26,7 @@
         android:layout_marginStart="298dp"
         android:layout_marginTop="412dp"
         android:layout_marginEnd="23dp"
+        app:fab_addButtonColorNormal="@color/main_color"
         android:layout_marginBottom="32dp">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
@@ -33,6 +34,7 @@
             android:layout_height="wrap_content"
             app:fab_icon="@drawable/history_48px"
             android:onClick="userHistoryOnClick"
+            app:fab_addButtonColorNormal="@color/main_color"
             app:fab_title="Label on the right" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
@@ -41,6 +43,7 @@
             app:fab_size="mini"
             android:onClick="logOutOnClick"
             app:fab_icon="@drawable/logout_48px"
+            app:fab_addButtonColorNormal="@color/main_color"
             app:fab_title="Another one on the right" />
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>

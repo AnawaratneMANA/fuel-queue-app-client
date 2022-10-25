@@ -18,6 +18,7 @@ import com.example.fuelqueueapplication.api.response.FuelStationResponse;
 import com.example.fuelqueueapplication.api.response.UserHistoryResponse;
 import com.example.fuelqueueapplication.recyclerViewAdapters.FuelStationListRecyclerViewAdapter;
 import com.example.fuelqueueapplication.recyclerViewAdapters.UserHistoryRecyclerViewAdapter;
+import com.example.fuelqueueapplication.util.Constants;
 
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class UserHistoryActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     UserHistoryRecyclerViewAdapter recyclerViewAdapter;
     FuelStationInterface fuelStationInterface;
-    String userId;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +38,8 @@ public class UserHistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_history);
         getSupportActionBar().setTitle("All History");
         recyclerView = findViewById(R.id.historyRecyclerView);
-        Intent intent = getIntent();
-        userId = intent.getStringExtra("userId");
+        sharedPreferences = getSharedPreferences(Constants.SHARED_PREFERENCE_NAME,MODE_PRIVATE);
+        String userId = sharedPreferences.getString(Constants.USER_ID,null);
 
         fuelStationInterface =  ApiClient.getClient().create(FuelStationInterface.class);
         Call<List<UserHistoryResponse>> listCall = fuelStationInterface.getUserHistory(userId);
