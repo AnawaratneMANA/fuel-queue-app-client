@@ -118,8 +118,16 @@ public class FuelStationInsertForm extends AppCompatActivity {
     public void updateStartingAndEndingTime(){
         if(newHourStarting != -99 | newMinuteStarting != -99 | newMinuteEnding != -99 | newHourEnding != -99){
             StationTimeUpdateRequest stationTimeUpdateRequest = new StationTimeUpdateRequest();
-            stationTimeUpdateRequest.setStartingTime(newHourStarting + " " + newMinuteStarting);
-            stationTimeUpdateRequest.setEndingTime(newHourEnding + " " + newMinuteEnding);
+
+            // Padding Zeros
+            String newHourStartingStr = String.format("%02d" , newHourStarting);
+            String newMinutesStartingStr = String.format("%02d" , newMinuteStarting);
+            String newHourEndingStr = String.format("%02d" , newHourEnding);
+            String newMinuteEndingStr = String.format("%02d" , newMinuteEnding);
+
+
+            stationTimeUpdateRequest.setStartingTime(newHourStartingStr + " " + newMinutesStartingStr);
+            stationTimeUpdateRequest.setEndingTime(newHourEndingStr + " " + newMinuteEndingStr);
             Call<Void> response = fuelStationInterface.updateStartingTimeEndTime(id, stationTimeUpdateRequest);
             response.enqueue(new Callback<Void>() {
                 @Override
