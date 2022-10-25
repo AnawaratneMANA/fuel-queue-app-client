@@ -38,8 +38,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fab_size="mini"
-            android:onClick="queueListOnClick"
-            app:fab_icon="@drawable/ic_baseline_queue_list"
+            android:onClick="logOut"
+            app:fab_icon="@drawable/logout_48px"
             app:fab_title="Another one on the right" />
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>

@@ -45,7 +45,7 @@ public class FuelQueueListViewAdapter extends RecyclerView.Adapter<FuelQueueList
                 String filterPattern = charSequence.toString().toLowerCase().trim();
 
                 for (QueueResponse queueResponse : queueResponseArrayList) {
-                    if (queueResponse.getVehicleNumber().toLowerCase().contains(filterPattern)) {
+                    if (queueResponse.getStationId().toLowerCase().contains(filterPattern)) {
                         filteredList.add(queueResponse);
                     }
                 }

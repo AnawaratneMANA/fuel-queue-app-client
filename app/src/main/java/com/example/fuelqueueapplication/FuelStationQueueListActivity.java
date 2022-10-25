@@ -1,6 +1,8 @@
 package com.example.fuelqueueapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 import com.example.fuelqueueapplication.api.ApiClient;
@@ -15,6 +17,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FuelStationQueueListActivity extends AppCompatActivity {
+    String id;
     RecyclerView recyclerView;
     FuelStationInterface fuelStationInterface;
     FuelQueueListViewAdapter recyclerViewAdapter;
@@ -24,6 +27,9 @@ public class FuelStationQueueListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fuel_station_queue_list);
         recyclerView = findViewById(R.id.FuelStationOwnerQueueListRecycleView);
+
+        Intent intent = getIntent();
+        id = intent.getStringExtra("id");
 
         fuelStationInterface =  ApiClient.getClient().create(FuelStationInterface.class);
         Call<List<QueueResponse>> listCall = fuelStationInterface.getQueueList();
@@ -35,6 +41,7 @@ public class FuelStationQueueListActivity extends AppCompatActivity {
                     List<QueueResponse> stationResponseList = response.body();
                     recyclerViewAdapter = new FuelQueueListViewAdapter(FuelStationQueueListActivity.this, stationResponseList);
                     recyclerView.setAdapter(recyclerViewAdapter);
+                    recyclerViewAdapter.getFilter().filter(id);
                 }else {
                     Toast.makeText(FuelStationQueueListActivity.this, "CAN'T_GET_THE_FUEL_STATIONS", Toast.LENGTH_SHORT).show();
                 }
