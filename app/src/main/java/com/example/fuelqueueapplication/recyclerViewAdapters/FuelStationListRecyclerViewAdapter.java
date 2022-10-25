@@ -2,6 +2,7 @@ package com.example.fuelqueueapplication.recyclerViewAdapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,19 +12,24 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fuelqueueapplication.FuelStationDetailActivity;
 import com.example.fuelqueueapplication.R;
 import com.example.fuelqueueapplication.api.response.FuelStationResponse;
+import com.example.fuelqueueapplication.util.DateTimeOperations;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class FuelStationListRecyclerViewAdapter extends RecyclerView.Adapter<FuelStationListRecyclerViewAdapter.MyViewHolder> implements Filterable {
     Context context;
     List<FuelStationResponse> stationResponseList;
     List<FuelStationResponse> stationResponseListFull;
+    DateTimeOperations dateTimeOperations = new DateTimeOperations();
+    String dateNow = dateTimeOperations.getDate();
 
     public FuelStationListRecyclerViewAdapter(Context context, List<FuelStationResponse> stationResponseList) {
         this.context = context;
@@ -41,6 +47,28 @@ public class FuelStationListRecyclerViewAdapter extends RecyclerView.Adapter<Fue
     @Override
     public void onBindViewHolder(@NonNull FuelStationListRecyclerViewAdapter.MyViewHolder holder, int position) {
         holder.location.setText(stationResponseList.get(position).getLocation());
+        String startTime = stationResponseList.get(position).getStartingTime();
+        String endTime = stationResponseList.get(position).getEndingTime();
+        if(startTime.equals("")){
+            holder.status.setText("Closed");
+            holder.cardView.setCardBackgroundColor(Color.rgb(110,110,110));
+        }else if(endTime.equals("")){
+            holder.status.setText("Available");
+            holder.cardView.setCardBackgroundColor(Color.rgb(0,214,10));
+        }else{
+            int nowHour = Integer.parseInt(dateNow.substring(11,13));
+            int startHour = Integer.parseInt(startTime.substring(0,2));
+            int endHour = Integer.parseInt(endTime.substring(0,2));
+
+            if(startHour<=nowHour && endHour>nowHour){
+                holder.status.setText("Available");
+                holder.cardView.setCardBackgroundColor(Color.rgb(0,214,10));
+            }else{
+                holder.status.setText("Pending");
+                holder.cardView.setCardBackgroundColor(Color.rgb(255,193,7));
+            }
+
+        }
     }
 
     @Override
@@ -84,13 +112,16 @@ public class FuelStationListRecyclerViewAdapter extends RecyclerView.Adapter<Fue
     };
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView location, endTime, StartingTime;
+        TextView location, status;
         LinearLayout layout;
+        CardView cardView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             location = itemView.findViewById(R.id.fuelStationLocation);
+            status = itemView.findViewById(R.id.fuelStationStatus);
+            cardView = itemView.findViewById(R.id.fuelStationCardView);
             layout = itemView.findViewById(R.id.StationRawViewOuterLayout);
 
             layout.setOnClickListener(new View.OnClickListener() {

@@ -39,6 +39,7 @@
             android:layout_gravity="center"/>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/fuelStationCardView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
@@ -48,14 +49,13 @@
             android:layout_gravity="center"
             >
             <TextView
-                android:id="@+id/locationName"
+                android:id="@+id/fuelStationStatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:padding="2px"
                 android:layout_marginStart="3dp"
                 android:layout_marginEnd="3dp"
-                android:backgroundTint="@color/white"
                 android:text="Available"
                 android:textStyle="bold"
                 android:textColor="#FFFFFF"

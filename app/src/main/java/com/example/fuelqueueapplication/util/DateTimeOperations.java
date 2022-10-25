@@ -19,7 +19,7 @@ public class DateTimeOperations {
     SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
     Date date = new Date();
 
-    // Get the Date in "06/11/2017 12:26:18" format.
+    // Get the Date in "06-11-2017 12:26:18" format.
     public String getDate() {
         return formatter.format(date);
     }
