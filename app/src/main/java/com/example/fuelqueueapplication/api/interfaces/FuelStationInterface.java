@@ -9,12 +9,10 @@ import com.example.fuelqueueapplication.api.response.FuelStationDetailsResponse;
 import com.example.fuelqueueapplication.api.response.FuelStationResponse;
 import com.example.fuelqueueapplication.api.response.QueueResponse;
 import com.example.fuelqueueapplication.api.response.UserHistoryResponse;
-import com.example.fuelqueueapplication.api.response.UserRegisterResponse;
 
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
@@ -40,7 +38,7 @@ public interface FuelStationInterface {
 
     //TODO: Enroll to the Queue. (POST)
     @POST("/api/FuelStation/addFuelStationQueue")
-    Call<FuelQueueRequest> createQueueRequest(@Body FuelQueueRequest fuelQueueRequest);
+    Call<FuelQueueResponse> createQueueRequest(@Body FuelQueueRequest fuelQueueRequest);
 
     //TODO: Remove from the Queue. (DELETE)
 

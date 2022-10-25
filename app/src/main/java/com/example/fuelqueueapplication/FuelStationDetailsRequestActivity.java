@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,7 +18,7 @@ import retrofit2.Response;
 
 public class FuelStationDetailsRequestActivity extends AppCompatActivity {
 
-    String id,location;
+    String id,queueId;
 
     // Define Elements
     TextView textViewFuelStationNameDetailsRequest;
@@ -37,7 +38,7 @@ public class FuelStationDetailsRequestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fuel_station_details_request);
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
-        location = intent.getStringExtra("locationName");
+        queueId = intent.getStringExtra("queueId");
 
         // Register elements
         textViewFuelStationNameDetailsRequest = findViewById(R.id.stationNameDetailsRequest);
@@ -80,5 +81,11 @@ public class FuelStationDetailsRequestActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void onClickPlaceRequest(View view) {
+        Intent intent = new Intent(FuelStationDetailsRequestActivity.this, CreateFuelRequestPage.class);
+        intent.putExtra("queueId", queueId);
+        startActivity(intent);
     }
 }

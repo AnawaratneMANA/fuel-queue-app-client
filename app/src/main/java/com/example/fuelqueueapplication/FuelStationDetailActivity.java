@@ -3,20 +3,27 @@ package com.example.fuelqueueapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fuelqueueapplication.api.ApiClient;
 import com.example.fuelqueueapplication.api.interfaces.FuelStationInterface;
+import com.example.fuelqueueapplication.api.request.FuelQueueRequest;
+import com.example.fuelqueueapplication.api.response.FuelQueueResponse;
 import com.example.fuelqueueapplication.api.response.FuelStationDetailsResponse;
+import com.example.fuelqueueapplication.util.Constants;
+import com.example.fuelqueueapplication.util.DateTimeOperations;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FuelStationDetailActivity extends AppCompatActivity {
-    String id,location;
+    String id,location, userId;
+    SharedPreferences sharedPreferences;
 
     // Define Elements
     TextView textViewFuelStationNameDetails;
@@ -28,6 +35,7 @@ public class FuelStationDetailActivity extends AppCompatActivity {
 
     // API call interface
     FuelStationInterface fuelStationInterface;
+    DateTimeOperations dateTimeOperations = new DateTimeOperations();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +45,9 @@ public class FuelStationDetailActivity extends AppCompatActivity {
         id = intent.getStringExtra("id");
         location = intent.getStringExtra("locationName");
         getSupportActionBar().setTitle(location);
+
+        sharedPreferences = getSharedPreferences(Constants.SHARED_PREFERENCE_NAME,MODE_PRIVATE);
+        userId = sharedPreferences.getString(Constants.USER_ID,null);
 
         // Register elements
         textViewFuelStationNameDetails = findViewById(R.id.fuelStationNameDetails);
@@ -76,5 +87,34 @@ public class FuelStationDetailActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void onClickEnroll(View view) {
+        String startTime = dateTimeOperations.getDate();
+        FuelQueueRequest fuelQueueRequest = new FuelQueueRequest(id,"vehicleNumber",userId,"pumpId","status",startTime);
+        Call<FuelQueueResponse> call =fuelStationInterface.createQueueRequest(fuelQueueRequest);
+
+        call.enqueue(new Callback<FuelQueueResponse>() {
+            @Override
+            public void onResponse(Call<FuelQueueResponse> call, Response<FuelQueueResponse> response) {
+                if(response.isSuccessful()){
+                    FuelQueueResponse fuelQueueResponse = response.body();
+                    Intent intent = new Intent(FuelStationDetailActivity.this, FuelStationDetailsRequestActivity.class);
+                    intent.putExtra("queueId", fuelQueueResponse.getId());
+                    intent.putExtra("id", id);
+                    startActivity(intent);
+
+                }else{
+                    Toast.makeText(FuelStationDetailActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<FuelQueueResponse> call, Throwable t) {
+                Toast.makeText(FuelStationDetailActivity.this, "INTERNAL_SERVER_ERROR(CAN'T_REACH_SEVER)", Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 }
