@@ -3,6 +3,7 @@ import com.example.fuelqueueapplication.api.request.FuelRequestRequest;
 import com.example.fuelqueueapplication.api.request.StationTimeUpdateRequest;
 import com.example.fuelqueueapplication.api.response.FuelStationDetailsResponse;
 import com.example.fuelqueueapplication.api.response.FuelStationResponse;
+import com.example.fuelqueueapplication.api.response.QueueResponse;
 import com.example.fuelqueueapplication.api.response.UserHistoryResponse;
 import com.example.fuelqueueapplication.api.response.UserRegisterResponse;
 
@@ -35,6 +36,9 @@ public interface FuelStationInterface {
     //TODO: Enroll to the Queue. (POST)
     //TODO: Remove from the Queue. (DELETE)
     //TODO: Get Queue list (GET)
+    @GET("/api/FuelStation/getFuelQueue")
+    Call<List<QueueResponse>> getQueueList();
+
     //TODO: Add to Queue (POST)
     //TODO: Add to History (POST)
     //TODO: Get List of Request (GET)
