@@ -9,6 +9,7 @@ import com.example.fuelqueueapplication.api.response.UserRegisterResponse;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -26,7 +27,7 @@ public interface FuelStationInterface {
     Call<FuelStationDetailsResponse> getFuelStationDetails(@Path("id") String id);
 
     @PUT("/api/FuelStation/updateStartEndTime/{id}")
-    void updateStartingTimeEndTime(@Path("id") String id, @Body StationTimeUpdateRequest updateTime);
+    Call<Void> updateStartingTimeEndTime(@Path("id") String id, @Body StationTimeUpdateRequest updateTime);
 
     @POST("/api/FuelStation/AddFuelRequest")
     Call<FuelRequestRequest> createRequest(@Body FuelRequestRequest fuelRequestRequest);
