@@ -38,19 +38,23 @@ public interface FuelStationInterface {
     @POST("/api/FuelStation/AddFuelRequest")
     Call<FuelRequestRequest> createRequest(@Body FuelRequestRequest fuelRequestRequest);
 
-    //TODO: Enroll to the Queue. (POST)
     //TODO: Remove from the Queue. (DELETE)
-    //TODO: Get Queue list (GET)
+
+    //Get Queue list (GET)
     @GET("/api/FuelStation/getFuelQueue")
     Call<List<QueueResponse>> getQueueList();
-    //TODO: Add to Queue (POST)
+
+    //Add to Queue (POST)
     @POST("/api/FuelStation/addFuelStationQueue")
     void enrollToQueue(@Body FuelQueueRequest fuelQueueRequest);
-    //TODO: Remove from the Queue. (DELETE)
+
     //TODO: Add to History (POST)
+
+    //Remove from the Queue. (DELETE)
     @DELETE("/api/FuelStation/removeFuelQueue/{id}")
     void fuelQueueRemove(@Path("id") String id,@Body FuelQueueRemoveRequest fuelQueueRemoveRequest);
-    //TODO: Get List of Request (GET)
+
+    //Get List of Request (GET)
     @GET("/api/FuelStation/getFuelRequests")
     Call<List<FuelRequestResponse>> getFuelRequest();
 }
