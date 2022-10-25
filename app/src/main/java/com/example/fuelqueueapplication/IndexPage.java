@@ -13,6 +13,7 @@ public class IndexPage extends AppCompatActivity {
     Button stationList;
     Button stationDetailsRequest;
     Button fuelStationUpdateTime;
+    Button fuelStationOwnerList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +24,20 @@ public class IndexPage extends AppCompatActivity {
         stationList = findViewById(R.id.stationListButtonDev);
         stationDetailsRequest = findViewById(R.id.stationDetailsRequestDev);
         fuelStationUpdateTime = findViewById(R.id.updateFuelStationDev);
+        fuelStationOwnerList = findViewById(R.id.fuelStationOwnerListDev);
 
         stationDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), FuelStationDetailActivity.class);
+                view.getContext().startActivity(intent);
+            }
+        });
+
+        fuelStationOwnerList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), FuelStationListOwnerActivity.class);
                 view.getContext().startActivity(intent);
             }
         });

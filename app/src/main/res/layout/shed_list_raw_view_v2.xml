@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_vertical"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
@@ -17,12 +15,14 @@
         app:cardCornerRadius="10dp">
 
         <LinearLayout
+            android:id="@+id/FuelStationOwnerLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/stationName"
+                android:layout_weight="1"
+                android:id="@+id/FuelStationOwnerLocationName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
@@ -34,47 +34,22 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                app:cardBackgroundColor="#673AB7"
-                android:layout_marginTop="7dp"
-                app:cardCornerRadius="30dp">
-                <TextView
-                    android:id="@+id/locationName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-
-                    android:padding="2px"
-                    android:layout_marginStart="3dp"
-                    android:layout_marginEnd="3dp"
-                    android:backgroundTint="@color/white"
-                    android:text="Rathmalana"
-                    android:textStyle="bold"
-                    android:textColor="#FFFFFF"
-                    android:textSize="15sp"/>
-            </androidx.cardview.widget.CardView>
-
-            <Space
-                android:layout_width="90dp"
-                android:layout_height="0dp" />
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
+                android:layout_weight="0"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 app:cardBackgroundColor="#673AB7"
                 app:cardCornerRadius="30dp" />
 
             <ImageView
-                android:id="@+id/selectStationButton"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
+                android:id="@+id/SelectUpdateStationButton"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="8dp"
                 android:background="@drawable/edit_48px" />
         </LinearLayout>
         <TextView
-            android:id="@+id/numberOfVehicles"
+            android:id="@+id/FuelStationOwnerStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"

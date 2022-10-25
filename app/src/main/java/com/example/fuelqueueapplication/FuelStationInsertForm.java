@@ -41,10 +41,18 @@ public class FuelStationInsertForm extends AppCompatActivity {
     // API interface
     FuelStationInterface fuelStationInterface;
 
+    // Variables
+    String id,location;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fuel_station_insert_form);
+
+        // Intent
+        Intent intent = getIntent();
+        id = intent.getStringExtra("id");
+        location = intent.getStringExtra("locationName");
 
         // Register UI components
         textInputLayoutStartingTime = findViewById(R.id.FuelServiceStartTime);
@@ -112,7 +120,7 @@ public class FuelStationInsertForm extends AppCompatActivity {
             StationTimeUpdateRequest stationTimeUpdateRequest = new StationTimeUpdateRequest();
             stationTimeUpdateRequest.setStartingTime(newHourStarting + " " + newMinuteStarting);
             stationTimeUpdateRequest.setEndingTime(newHourEnding + " " + newMinuteEnding);
-            Call<Void> response = fuelStationInterface.updateStartingTimeEndTime("634e0d91ab08525cb4547634", stationTimeUpdateRequest);
+            Call<Void> response = fuelStationInterface.updateStartingTimeEndTime(id, stationTimeUpdateRequest);
             response.enqueue(new Callback<Void>() {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
