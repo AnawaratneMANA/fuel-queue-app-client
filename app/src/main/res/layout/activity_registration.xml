@@ -15,7 +15,7 @@
         android:layout_marginTop="40dp"
         android:fontFamily="sans-serif-medium"
         android:text="Welcome,"
-        android:textColor="#2a0e45"
+        android:textColor="@color/main_color"
         android:textSize="28sp" />
 
     <TextView
@@ -40,7 +40,7 @@
         app:endIconMode="clear_text"
         app:helperTextEnabled="false"
         app:startIconDrawable="@drawable/ic_baseline_person_24"
-        app:startIconTint="@color/purple_500">
+        app:startIconTint="@color/main_color">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/rUsernameInput"
@@ -60,7 +60,7 @@
         app:endIconMode="clear_text"
         app:helperTextEnabled="false"
         app:startIconDrawable="@drawable/ic_baseline_email_24"
-        app:startIconTint="@color/purple_500">
+        app:startIconTint="@color/main_color">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/rEmailInput"
@@ -79,7 +79,7 @@
         android:hint="Password"
         app:passwordToggleEnabled="true"
         app:startIconDrawable="@drawable/ic_baseline_lock_24"
-        app:startIconTint="@color/purple_500">
+        app:startIconTint="@color/main_color">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/rPasswordInput"
@@ -99,7 +99,7 @@
         android:layout_marginEnd="32dp"
         android:hint="Vehicle Type"
         app:startIconDrawable="@drawable/ic_baseline_directions_car_24"
-        app:startIconTint="@color/purple_500"
+        app:startIconTint="@color/main_color"
 
         >
 
@@ -132,6 +132,7 @@
         android:layout_marginBottom="10dp"
         android:gravity="center"
         android:onClick="onClick"
+        android:backgroundTint="@color/main_color"
         android:text="Sign Up" />
 
     <LinearLayout
@@ -160,7 +161,7 @@
             android:minHeight="48dp"
             android:onClick="linkOnClick"
             android:text=" Sing In"
-            android:textColor="#FF9C6DFF"
+            android:textColor="#4DCEFA"
             android:textSize="15sp" />
     </LinearLayout>
 

@@ -31,16 +31,16 @@
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_colorNormal="@color/white"
-            app:fab_colorPressed="@color/white"
+            app:fab_icon="@drawable/history_48px"
+            android:onClick="userHistoryOnClick"
             app:fab_title="Label on the right" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_colorNormal="@color/white"
-            app:fab_colorPressed="@color/white"
             app:fab_size="mini"
+            android:onClick="logOutOnClick"
+            app:fab_icon="@drawable/logout_48px"
             app:fab_title="Another one on the right" />
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
