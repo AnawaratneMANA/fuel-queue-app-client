@@ -25,7 +25,9 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
+/**
+ * fuel request adapter class
+ * **/
 public class FuelRequestsListViewAdapter extends RecyclerView.Adapter<FuelRequestsListViewAdapter.MyViewHolder> implements Filterable {
     Context context;
     List<FuelRequestResponse> requestResponseList;
@@ -34,17 +36,20 @@ public class FuelRequestsListViewAdapter extends RecyclerView.Adapter<FuelReques
     // API Interface
     FuelStationInterface fuelStationInterface;
 
+    //constructor
     public FuelRequestsListViewAdapter(Context context, List<FuelRequestResponse> queueResponseList){
         this.context = context;
         this.requestResponseList = queueResponseList;
         this.requestResponseArrayList = new ArrayList<>(queueResponseList);
     }
 
+    //get the filter
     @Override
     public Filter getFilter() {
         return FuelStationQueueFilter;
     }
 
+    //filter
     private Filter FuelStationQueueFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence charSequence) {
@@ -75,6 +80,7 @@ public class FuelRequestsListViewAdapter extends RecyclerView.Adapter<FuelReques
         }
     };
 
+    //on create view holder
     @NonNull
     @Override
     public FuelRequestsListViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -82,17 +88,20 @@ public class FuelRequestsListViewAdapter extends RecyclerView.Adapter<FuelReques
         return new FuelRequestsListViewAdapter.MyViewHolder(view);
     }
 
+    //on bind view holder
     @Override
     public void onBindViewHolder(@NonNull FuelRequestsListViewAdapter.MyViewHolder holder, int position) {
         holder.textViewRequestedUserName.setText(requestResponseList.get(position).getUserId());
         holder.textViewDescription.setText("Description N/A");
     }
 
+    //get list count
     @Override
     public int getItemCount() {
         return requestResponseList.size();
     }
 
+    //my view holder method
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView textViewRequestedUserName;
         TextView textViewDescription;

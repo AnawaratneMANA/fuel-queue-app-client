@@ -1,5 +1,8 @@
 package com.example.fuelqueueapplication.api.response;
 
+/**
+ * user register response class
+ * **/
 public class UserRegisterResponse {
     private String id;
     private String username;

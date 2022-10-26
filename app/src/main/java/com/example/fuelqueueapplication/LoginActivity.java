@@ -24,7 +24,9 @@ import com.google.android.material.textfield.TextInputLayout;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
+/**
+ * login activity class
+ * **/
 public class LoginActivity extends AppCompatActivity {
     String password, username;
     TextInputLayout passwordInputLayout, usernameInputLayout;
@@ -33,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     LoginInterface loginInterface;
     SharedPreferences sharedPreferences;
 
+    //on create method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    //on click for login button
     public void onClick(View view) {
         usernameInputLayout.setErrorEnabled(false);
         errorMessage.setText("");
@@ -62,11 +66,13 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    //to move registration activity
     public void linkOnClick(View view) {
         Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
         startActivity(intent);
     }
 
+    //input validation
     private boolean loginValidation() {
         password = passwordInput.getText().toString().trim();
         username = usernameInput.getText().toString().trim();
@@ -89,6 +95,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    //to login
     private void singIn() {
         UserRegisterRequest userRegisterRequest = new UserRegisterRequest(username, "", password, "", "");
         Call<UserRegisterResponse> call = loginInterface.userLogin(userRegisterRequest);

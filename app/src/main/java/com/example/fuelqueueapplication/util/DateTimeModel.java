@@ -1,5 +1,7 @@
 package com.example.fuelqueueapplication.util;
-
+/**
+ * date time model class
+ * **/
 public class DateTimeModel {
     private String hours;
     private String minutes;

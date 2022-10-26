@@ -33,20 +33,21 @@ public class DateTimeOperations {
         return dateTimeModel;
     }
 
-    //TODO: When String Datetime given output Date
+    //When String Datetime given output Date
     public DateTimeModel stringDateTimeToDateOnly() {
         DateTimeModel dateTimeModel = new DateTimeModel();
         // Implement the logic
         return dateTimeModel;
     }
 
-    //TODO: When String Datetime given output Time
+    //When String Datetime given output Time
     public DateTimeModel stringDateTimeToTime() {
         DateTimeModel dateTimeModel = new DateTimeModel();
         // Implement the logic
         return dateTimeModel;
     }
 
+    //get the time differance
     public String getDateDifferance(String start_date, String end_date) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
 

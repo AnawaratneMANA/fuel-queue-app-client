@@ -17,23 +17,28 @@ import com.example.fuelqueueapplication.api.response.QueueResponse;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * fuel queue adapter class
+ * **/
 public class FuelQueueListViewAdapter extends RecyclerView.Adapter<FuelQueueListViewAdapter.MyViewHolder> implements Filterable {
     Context context;
     List<QueueResponse> queueResponseList;
     List<QueueResponse> queueResponseArrayList;
 
+    //constructor
     public FuelQueueListViewAdapter(Context context, List<QueueResponse> queueResponseList){
         this.context = context;
         this.queueResponseList = queueResponseList;
         this.queueResponseArrayList = new ArrayList<>(queueResponseList);
     }
 
+    //get the filter
     @Override
     public Filter getFilter() {
         return FuelStationQueueFilter;
     }
 
+    // filter
     private Filter FuelStationQueueFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence charSequence) {
@@ -64,6 +69,7 @@ public class FuelQueueListViewAdapter extends RecyclerView.Adapter<FuelQueueList
         }
     };
 
+    //on create view holder
     @NonNull
     @Override
     public FuelQueueListViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -71,17 +77,20 @@ public class FuelQueueListViewAdapter extends RecyclerView.Adapter<FuelQueueList
         return new MyViewHolder(view);
     }
 
+    //on bind view holder
     @Override
     public void onBindViewHolder(@NonNull FuelQueueListViewAdapter.MyViewHolder holder, int position) {
         holder.textViewUserName.setText(queueResponseList.get(position).getUserId());
         holder.textViewWaitingTime.setText("Waiting Time: -");
     }
 
+    //get list count
     @Override
     public int getItemCount() {
        return queueResponseList.size();
     }
 
+    //my view holder method
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView textViewUserName;
         TextView textViewWaitingTime;

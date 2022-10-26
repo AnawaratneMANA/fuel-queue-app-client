@@ -18,13 +18,16 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
+/**
+ * fuel station request activity class
+ * **/
 public class FuelStationRequestListActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     FuelStationInterface fuelStationInterface;
     FuelRequestsListViewAdapter recyclerViewAdapter;
 
+    //no create method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

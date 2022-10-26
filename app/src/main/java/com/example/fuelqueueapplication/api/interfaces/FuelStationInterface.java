@@ -20,28 +20,33 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
-
+/**
+ * fuel station interface
+ * **/
 public interface FuelStationInterface {
+    //get all fuel station
     @GET("/api/FuelStation/getFuelStations")
     Call<List<FuelStationResponse>> getAllFuelStations();
 
+    //get user history
     @GET("/api/FuelStation/getUserHistory/{id}")
     Call<List<UserHistoryResponse>> getUserHistory(@Path("id") String id);
 
+    //get fuel station details
     @GET("/api/FuelStation/get/{id}")
     Call<FuelStationDetailsResponse> getFuelStationDetails(@Path("id") String id);
 
+    //update fuel station time
     @PUT("/api/FuelStation/updateStartEndTime/{id}")
     Call<Void> updateStartingTimeEndTime(@Path("id") String id, @Body StationTimeUpdateRequest updateTime);
 
+    //crete new fuel request
     @POST("/api/FuelStation/AddFuelRequest")
     Call<FuelRequestRequest> createRequest(@Body FuelRequestRequest fuelRequestRequest);
 
-    //TODO: Enroll to the Queue. (POST)
+    //Enroll to the Queue
     @POST("/api/FuelStation/addFuelStationQueue")
     Call<FuelQueueResponse> createQueueRequest(@Body FuelQueueRequest fuelQueueRequest);
-
-    //TODO: Remove from the Queue. (DELETE)
 
     //Get Queue list (GET)
     @GET("/api/FuelStation/getFuelQueue")
@@ -51,8 +56,6 @@ public interface FuelStationInterface {
     @POST("/api/FuelStation/addFuelStationQueue")
     Call<Void> enrollToQueue(@Body FuelQueueRequest fuelQueueRequest);
 
-    //TODO: Add to History (POST)
-
     //Remove from the Queue. (DELETE)
     @DELETE("/api/FuelStation/removeFuelQueue/{id}")
     Call<Void> fuelQueueRemove(@Path("id") String id,@Body FuelQueueRemoveRequest fuelQueueRemoveRequest);
@@ -61,6 +64,7 @@ public interface FuelStationInterface {
     @GET("/api/FuelStation/getFuelRequests")
     Call<List<FuelRequestResponse>> getFuelRequest();
 
+    //update fuel request status
     @PUT("/api/FuelStation/updateApprovalState/{id}")
     Call<Void> updateApprovalStatus(@Path("id") String id, @Body ApprovalStatusUpdateRequest approvalStatusUpdateRequest);
 }

@@ -25,13 +25,16 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
+/**
+ * user history activity class
+ * **/
 public class UserHistoryActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     UserHistoryRecyclerViewAdapter recyclerViewAdapter;
     FuelStationInterface fuelStationInterface;
     SharedPreferences sharedPreferences;
 
+    //om create method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +68,7 @@ public class UserHistoryActivity extends AppCompatActivity {
         });
     }
 
+    //to search from the history list
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

@@ -23,7 +23,9 @@ import com.example.fuelqueueapplication.util.DateTimeOperations;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
+/**
+ * fuel station adapter class
+ * **/
 public class FuelStationListRecyclerViewAdapter extends RecyclerView.Adapter<FuelStationListRecyclerViewAdapter.MyViewHolder> implements Filterable {
     Context context;
     List<FuelStationResponse> stationResponseList;
@@ -31,12 +33,14 @@ public class FuelStationListRecyclerViewAdapter extends RecyclerView.Adapter<Fue
     DateTimeOperations dateTimeOperations = new DateTimeOperations();
     String dateNow = dateTimeOperations.getDate();
 
+    //constructor
     public FuelStationListRecyclerViewAdapter(Context context, List<FuelStationResponse> stationResponseList) {
         this.context = context;
         this.stationResponseList = stationResponseList;
         stationResponseListFull = new ArrayList<>(stationResponseList);
     }
 
+    //on create view holder
     @NonNull
     @Override
     public FuelStationListRecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -44,6 +48,7 @@ public class FuelStationListRecyclerViewAdapter extends RecyclerView.Adapter<Fue
         return new MyViewHolder(view);
     }
 
+    //on bind view holder
     @Override
     public void onBindViewHolder(@NonNull FuelStationListRecyclerViewAdapter.MyViewHolder holder, int position) {
         holder.location.setText(stationResponseList.get(position).getLocation());
@@ -71,16 +76,19 @@ public class FuelStationListRecyclerViewAdapter extends RecyclerView.Adapter<Fue
         }
     }
 
+    //get list count
     @Override
     public int getItemCount() {
         return stationResponseList.size();
     }
 
+    //get the filter
     @Override
     public Filter getFilter() {
         return FuelStationFilter;
     }
 
+    //filter
     private Filter FuelStationFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence charSequence) {
@@ -111,6 +119,7 @@ public class FuelStationListRecyclerViewAdapter extends RecyclerView.Adapter<Fue
         }
     };
 
+    //my view holder method
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView location, status;
         LinearLayout layout;

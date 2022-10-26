@@ -22,7 +22,9 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
+/**
+ * furl station activity class
+ * **/
 public class FuelStationActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     FuelStationListRecyclerViewAdapter recyclerViewAdapter;
@@ -30,6 +32,7 @@ public class FuelStationActivity extends AppCompatActivity {
     String userId;
 
 
+    //on create method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +65,7 @@ public class FuelStationActivity extends AppCompatActivity {
         });
     }
 
+    //to search from fuel station list
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -85,12 +89,14 @@ public class FuelStationActivity extends AppCompatActivity {
         return true;
     }
 
+    //move to user history activity
     public void userHistoryOnClick(View view) {
         Intent intent = new Intent(FuelStationActivity.this, UserHistoryActivity.class);
         intent.putExtra("userId", userId);
         startActivity(intent);
     }
 
+    //to log out
     public void logOutOnClick(View view) {
         Intent intent = new Intent(FuelStationActivity.this, LoginActivity.class);
         startActivity(intent);

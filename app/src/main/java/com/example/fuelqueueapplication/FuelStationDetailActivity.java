@@ -20,7 +20,9 @@ import com.example.fuelqueueapplication.util.DateTimeOperations;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
+/**
+ * fuel station detail activity class
+ * **/
 public class FuelStationDetailActivity extends AppCompatActivity {
     String id,location, userId;
     SharedPreferences sharedPreferences;
@@ -37,6 +39,7 @@ public class FuelStationDetailActivity extends AppCompatActivity {
     FuelStationInterface fuelStationInterface;
     DateTimeOperations dateTimeOperations = new DateTimeOperations();
 
+    //on create method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +92,7 @@ public class FuelStationDetailActivity extends AppCompatActivity {
 
     }
 
+    //on click for enroll to the queue
     public void onClickEnroll(View view) {
         String startTime = dateTimeOperations.getDate();
         FuelQueueRequest fuelQueueRequest = new FuelQueueRequest(id,"vehicleNumber",userId,"pumpId","status",startTime);

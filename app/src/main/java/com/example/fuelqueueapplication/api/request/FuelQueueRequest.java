@@ -1,5 +1,8 @@
 package com.example.fuelqueueapplication.api.request;
 
+/**
+ * fuel queue request class
+ * **/
 public class FuelQueueRequest {
     private String StationId;
     private String VehicleNumber;

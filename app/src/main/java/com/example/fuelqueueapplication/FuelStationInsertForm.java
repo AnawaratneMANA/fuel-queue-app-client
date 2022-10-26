@@ -21,7 +21,9 @@ import com.google.android.material.timepicker.TimeFormat;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
+/**
+ * fuel station insert activity class
+ * **/
 public class FuelStationInsertForm extends AppCompatActivity {
 
     // Variables
@@ -44,6 +46,7 @@ public class FuelStationInsertForm extends AppCompatActivity {
     // Variables
     String id,location;
 
+    //on create method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +89,7 @@ public class FuelStationInsertForm extends AppCompatActivity {
         fuelStationInterface = ApiClient.getClient().create(FuelStationInterface.class);
 }
 
+    //to show date time picker
     @SuppressLint("SetTextI18n")
     private void showDateTimePickerDialog(int selection) {
         // Implement the method.

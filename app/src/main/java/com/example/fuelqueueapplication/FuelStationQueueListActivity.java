@@ -15,13 +15,16 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
+/**
+ * fuel station queue activity class
+ * **/
 public class FuelStationQueueListActivity extends AppCompatActivity {
     String id;
     RecyclerView recyclerView;
     FuelStationInterface fuelStationInterface;
     FuelQueueListViewAdapter recyclerViewAdapter;
 
+    //on create method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

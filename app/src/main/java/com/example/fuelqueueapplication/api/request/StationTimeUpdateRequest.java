@@ -1,5 +1,8 @@
 package com.example.fuelqueueapplication.api.request;
 
+/**
+ * station time update request class
+ * **/
 public class StationTimeUpdateRequest {
     private String startingTime;
     private String endingTime;

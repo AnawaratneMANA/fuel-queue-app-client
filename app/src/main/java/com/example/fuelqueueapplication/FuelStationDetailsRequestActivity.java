@@ -15,7 +15,9 @@ import com.example.fuelqueueapplication.api.response.FuelStationDetailsResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
+/**
+ * fuel station detail request activity class
+ * **/
 public class FuelStationDetailsRequestActivity extends AppCompatActivity {
 
     String id,queueId;
@@ -32,6 +34,7 @@ public class FuelStationDetailsRequestActivity extends AppCompatActivity {
     // API call interface
     FuelStationInterface fuelStationInterface;
 
+    //on create method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +86,7 @@ public class FuelStationDetailsRequestActivity extends AppCompatActivity {
 
     }
 
+    //on click for move to fuel request form
     public void onClickPlaceRequest(View view) {
         Intent intent = new Intent(FuelStationDetailsRequestActivity.this, CreateFuelRequestPage.class);
         intent.putExtra("queueId", queueId);

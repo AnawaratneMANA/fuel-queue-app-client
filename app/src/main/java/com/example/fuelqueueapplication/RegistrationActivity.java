@@ -27,7 +27,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
+/**
+ * registration activity class
+ * **/
 public class RegistrationActivity extends AppCompatActivity {
     String email, password, username, vehicleType;
     TextInputLayout emailInputLayout, passwordInputLayout, usernameInputLayout, vehicleTypeLayout;
@@ -38,6 +40,7 @@ public class RegistrationActivity extends AppCompatActivity {
     String[] items = {"Car","Van", "Bus","Motorcycle", "Three Wheel", "Lorry"};
     LoginInterface loginInterface;
 
+    //on create method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +71,7 @@ public class RegistrationActivity extends AppCompatActivity {
         });
     }
 
+    //on click for sing up button
     public void onClick(View view) throws JSONException {
         errorMessage.setText("");
         emailInputLayout.setErrorEnabled(false);
@@ -80,6 +84,7 @@ public class RegistrationActivity extends AppCompatActivity {
         }
 
     }
+    //to move login activity
     public void linkOnClick(View view){
         Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
         startActivity(intent);
@@ -87,6 +92,7 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
 
+    //input validation
     private boolean registrationValidation() {
         email = emailInput.getText().toString().trim();
         password = passwordInput.getText().toString().trim();
@@ -125,6 +131,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     }
 
+    //to register to the system
     private void singUp() {
         UserRegisterRequest userRegisterRequest = new UserRegisterRequest(username,email,password,"user",vehicleType);
         Call<UserRegisterResponse> call = loginInterface.userRegister(userRegisterRequest);

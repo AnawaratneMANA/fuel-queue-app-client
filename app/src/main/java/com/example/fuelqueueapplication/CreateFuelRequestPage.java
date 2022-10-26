@@ -27,7 +27,9 @@ import org.json.JSONException;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
+/**
+ * create fuel request activity class
+ * **/
 public class CreateFuelRequestPage extends AppCompatActivity {
     EditText amountInput;
     AutoCompleteTextView pumpInput;
@@ -42,6 +44,7 @@ public class CreateFuelRequestPage extends AppCompatActivity {
     DateTimeOperations dateTimeOperations = new DateTimeOperations();
 
 
+    //on create method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +72,7 @@ public class CreateFuelRequestPage extends AppCompatActivity {
         });
     }
 
+    //on click for button
     public void onClick(View view) throws JSONException {
         amountInputLayout.setErrorEnabled(false);
         pumpInputLayout.setErrorEnabled(false);
@@ -82,6 +86,7 @@ public class CreateFuelRequestPage extends AppCompatActivity {
 
 
 
+    //send the fuel request
     private void amountRequest() {
         FuelRequestRequest fuelRequestRequest = new FuelRequestRequest(userId,amount,pump,"pending");
         Call<FuelRequestRequest> call = fuelStationInterface.createRequest(fuelRequestRequest);
@@ -104,6 +109,7 @@ public class CreateFuelRequestPage extends AppCompatActivity {
         });
     }
 
+    //add to the fuel history
     private void addHistory() {
         String fuelAmount = String.valueOf(amount);
         String endTime = dateTimeOperations.getDate();
@@ -130,6 +136,7 @@ public class CreateFuelRequestPage extends AppCompatActivity {
         });
     }
 
+    //check input validation
     private boolean inputValidation() {
         amount = Float.parseFloat(amountInput.getText().toString().trim());
         String stringAmount = amountInput.getText().toString().trim();

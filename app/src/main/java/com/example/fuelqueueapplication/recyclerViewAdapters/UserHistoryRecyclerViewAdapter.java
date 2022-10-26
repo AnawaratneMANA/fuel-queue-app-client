@@ -22,19 +22,23 @@ import com.example.fuelqueueapplication.util.DateTimeOperations;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * user history adapter class
+ * **/
 public class UserHistoryRecyclerViewAdapter extends RecyclerView.Adapter<UserHistoryRecyclerViewAdapter.MyViewHolder> implements Filterable {
     List<UserHistoryResponse> historyResponseList;
     List<UserHistoryResponse> historyResponseFullList;
     Context context;
     DateTimeOperations dateTimeOperations =new DateTimeOperations();
 
+    //constructor
     public UserHistoryRecyclerViewAdapter(Context context,List<UserHistoryResponse> historyResponseList) {
         this.context = context;
         this.historyResponseList = historyResponseList;
         this.historyResponseFullList = new ArrayList<>(historyResponseList);
     }
 
+    //on create view holder
     @NonNull
     @Override
     public UserHistoryRecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -42,6 +46,7 @@ public class UserHistoryRecyclerViewAdapter extends RecyclerView.Adapter<UserHis
         return new UserHistoryRecyclerViewAdapter.MyViewHolder(view);
     }
 
+    //on bind view holder
     @Override
     public void onBindViewHolder(@NonNull UserHistoryRecyclerViewAdapter.MyViewHolder holder, int position) {
         holder.location.setText(historyResponseList.get(position).getLocation());
@@ -58,16 +63,19 @@ public class UserHistoryRecyclerViewAdapter extends RecyclerView.Adapter<UserHis
         }
     }
 
+    //get list count
     @Override
     public int getItemCount() {
         return historyResponseList.size();
     }
 
+    //get the filter
     @Override
     public Filter getFilter() {
         return UserHistoryFilter;
     }
 
+    //filter
     private Filter UserHistoryFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence charSequence) {
@@ -98,6 +106,7 @@ public class UserHistoryRecyclerViewAdapter extends RecyclerView.Adapter<UserHis
         }
     };
 
+    //my view holder method
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView location, entryTime, leaveTime, waitTime, fuelAmount;
         LinearLayout layout;

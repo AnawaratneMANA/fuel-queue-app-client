@@ -1,5 +1,8 @@
 package com.example.fuelqueueapplication.api.response;
 
+/**
+ * fuel station details response class
+ * **/
 public class FuelStationDetailsResponse {
     private String id;
     private String fuelStationName;

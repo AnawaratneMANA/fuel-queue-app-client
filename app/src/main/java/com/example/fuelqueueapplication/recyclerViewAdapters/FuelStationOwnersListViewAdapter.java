@@ -21,12 +21,15 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * fuel station owner adapter class
+ * **/
 public class FuelStationOwnersListViewAdapter extends RecyclerView.Adapter<FuelStationOwnersListViewAdapter.MyViewHolder> implements Filterable {
     Context context;
     List<FuelStationResponse> stationResponseList;
     List<FuelStationResponse> stationResponseListArrayList;
 
+    //constructor
     public FuelStationOwnersListViewAdapter(Context context, List<FuelStationResponse> fuelStationResponses){
         this.context = context;
         this.stationResponseList = fuelStationResponses;
@@ -34,11 +37,13 @@ public class FuelStationOwnersListViewAdapter extends RecyclerView.Adapter<FuelS
     }
 
 
+    //get the filter
     @Override
     public Filter getFilter() {
         return FuelStationFilter;
     }
 
+    //filter
     private Filter FuelStationFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence charSequence) {
@@ -69,6 +74,7 @@ public class FuelStationOwnersListViewAdapter extends RecyclerView.Adapter<FuelS
         }
     };
 
+    //on create view holder
     @NonNull
     @Override
     public FuelStationOwnersListViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -76,16 +82,19 @@ public class FuelStationOwnersListViewAdapter extends RecyclerView.Adapter<FuelS
         return new MyViewHolder(view);
     }
 
+    //on bind view holder
     @Override
     public void onBindViewHolder(@NonNull FuelStationOwnersListViewAdapter.MyViewHolder holder, int position) {
         holder.Location.setText(stationResponseList.get(position).getLocation());
     }
 
+    //get list count
     @Override
     public int getItemCount() {
         return stationResponseList.size();
     }
 
+    //my view holder method
     public class MyViewHolder extends RecyclerView.ViewHolder {
         // Define View Items
         TextView Location;

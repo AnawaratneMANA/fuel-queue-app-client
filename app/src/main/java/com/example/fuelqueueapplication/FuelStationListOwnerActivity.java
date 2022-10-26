@@ -24,7 +24,9 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
+/**
+ * fuel station owner activity class
+ * **/
 public class FuelStationListOwnerActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
@@ -32,6 +34,7 @@ public class FuelStationListOwnerActivity extends AppCompatActivity {
     FuelStationInterface fuelStationInterface;
     String userId;
 
+    //on create method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +67,7 @@ public class FuelStationListOwnerActivity extends AppCompatActivity {
         });
     }
 
+    //to search from the list
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -87,11 +91,13 @@ public class FuelStationListOwnerActivity extends AppCompatActivity {
         return true;
     }
 
+    //to move to request list activity
     public void requestListOnClick(View view){
         Intent intent = new Intent(FuelStationListOwnerActivity.this, FuelStationRequestListActivity.class);
         startActivity(intent);
     }
 
+    //to log out
     public void logOut(View view){
         Intent intent = new Intent(FuelStationListOwnerActivity.this, LoginActivity.class);
         startActivity(intent);
