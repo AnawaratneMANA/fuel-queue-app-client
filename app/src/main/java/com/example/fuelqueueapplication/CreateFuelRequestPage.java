@@ -51,6 +51,7 @@ public class CreateFuelRequestPage extends AppCompatActivity {
         setContentView(R.layout.activity_create_fuel_request_page);
         Intent intent = getIntent();
         queueId = intent.getStringExtra("queueId");
+        System.out.println("queueId :"+queueId);
 
         sharedPreferences = getSharedPreferences(Constants.SHARED_PREFERENCE_NAME,MODE_PRIVATE);
         userId = sharedPreferences.getString(Constants.USER_ID,null);
@@ -114,7 +115,7 @@ public class CreateFuelRequestPage extends AppCompatActivity {
         String fuelAmount = String.valueOf(amount);
         String endTime = dateTimeOperations.getDate();
         FuelQueueRemoveRequest fuelQueueRemoveRequest = new FuelQueueRemoveRequest(endTime, fuelAmount+"L");
-        Call<Void> call = fuelStationInterface.fuelQueueRemove(queueId,fuelQueueRemoveRequest);
+        Call<Void> call = fuelStationInterface.fuelQueueRemove("/api/FuelStation/removeFuelQueue/"+queueId,fuelQueueRemoveRequest);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -123,7 +124,7 @@ public class CreateFuelRequestPage extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }else{
-                    Toast.makeText(CreateFuelRequestPage.this, "CHECK_THE_INPUTS", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateFuelRequestPage.this, "CHECK_THE_history_INPUTS", Toast.LENGTH_SHORT).show();
 
                 }
             }

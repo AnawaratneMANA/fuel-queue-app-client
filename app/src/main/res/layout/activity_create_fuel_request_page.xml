@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".RegistrationActivity">
+    tools:context=".CreateFuelRequestPage">
 
     <TextView
         android:id="@+id/subMerchantContactTopic"
@@ -25,30 +25,8 @@
         android:layout_marginLeft="30dp"
         android:fontFamily="sans-serif-medium"
         android:textFontWeight="@integer/material_motion_duration_long_1"
-        android:text="Add Refuel reqeust to the pump"
+        android:text="Add Refuel request to the pump"
         android:textColor="#2a0e45"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/subMerchantContactsubTopic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="40dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="Filling Station"
-        android:textColor="@color/main_color"
-        android:textSize="28sp" />
-
-    <TextView
-        android:id="@+id/subMerchantContactsubTopic2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:fontFamily="sans-serif-medium"
-        android:textFontWeight="@integer/material_motion_duration_long_1"
-        android:text="IOC Filling station"
-        android:textColor="#878787"
         android:textSize="24sp" />
 
 

@@ -1,5 +1,6 @@
 package com.example.fuelqueueapplication;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,6 +15,8 @@ public class ThankYouActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thank_you);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
     }
 
     //to move fuel station activity

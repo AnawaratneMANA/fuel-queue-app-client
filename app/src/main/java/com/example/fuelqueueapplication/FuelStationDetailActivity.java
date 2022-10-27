@@ -71,7 +71,7 @@ public class FuelStationDetailActivity extends AppCompatActivity {
 
                     //Debug
                     System.out.println(fuelStationDetailsResponse.getEndingTime());
-                    Toast.makeText(FuelStationDetailActivity.this, "DEBUG: " + fuelStationDetailsResponse.getEndingTime(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(FuelStationDetailActivity.this, "DEBUG: " + fuelStationDetailsResponse.getEndingTime(), Toast.LENGTH_SHORT).show();
 
                     // Bind details to the interface elements
                     textViewFuelStationNameDetails.setText("IOC Filling Station");
@@ -120,5 +120,11 @@ public class FuelStationDetailActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void exitOnClick(View view) {
+        Intent intent = new Intent(FuelStationDetailActivity.this, FuelStationActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

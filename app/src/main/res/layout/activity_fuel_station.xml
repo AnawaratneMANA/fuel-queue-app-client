@@ -32,7 +32,7 @@
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_icon="@drawable/history_48px"
+            app:fab_icon="@drawable/ic_baseline_history_24"
             android:onClick="userHistoryOnClick"
             app:fab_addButtonColorNormal="@color/main_color"
             app:fab_title="Label on the right" />

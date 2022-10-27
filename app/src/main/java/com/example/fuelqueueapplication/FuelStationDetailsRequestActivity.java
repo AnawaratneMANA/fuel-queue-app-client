@@ -10,7 +10,9 @@ import android.widget.Toast;
 
 import com.example.fuelqueueapplication.api.ApiClient;
 import com.example.fuelqueueapplication.api.interfaces.FuelStationInterface;
+import com.example.fuelqueueapplication.api.request.FuelQueueRemoveRequest;
 import com.example.fuelqueueapplication.api.response.FuelStationDetailsResponse;
+import com.example.fuelqueueapplication.util.DateTimeOperations;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,6 +23,7 @@ import retrofit2.Response;
 public class FuelStationDetailsRequestActivity extends AppCompatActivity {
 
     String id,queueId;
+    DateTimeOperations dateTimeOperations = new DateTimeOperations();
 
     // Define Elements
     TextView textViewFuelStationNameDetailsRequest;
@@ -64,7 +67,7 @@ public class FuelStationDetailsRequestActivity extends AppCompatActivity {
 
                     //Debug
                     System.out.println(fuelStationDetailsResponse.getEndingTime());
-                    Toast.makeText(FuelStationDetailsRequestActivity.this, "DEBUG: " + fuelStationDetailsResponse.getEndingTime(), Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(FuelStationDetailsRequestActivity.this, "DEBUG: " + fuelStationDetailsResponse.getEndingTime(), Toast.LENGTH_SHORT).show();
 
                     // Bind details to the interface elements
                     textViewFuelStationNameDetailsRequest.setText("IOC Filling Station");
@@ -73,7 +76,9 @@ public class FuelStationDetailsRequestActivity extends AppCompatActivity {
                     textViewServiceEndAtRequest.setText(fuelStationDetailsResponse.getEndingTime());
                     textViewFuelTypeRequest.setText(fuelStationDetailsResponse.getFuelType());
                     textViewVehicleCountRequest.setText(String.valueOf(fuelStationDetailsResponse.getVehicleCount()));
-                    textViewUserWaitingTimeRequest.setText("0.00.00");
+                    int count = fuelStationDetailsResponse.getVehicleCount();
+                    int waitingTime = count*5;
+                    textViewUserWaitingTimeRequest.setText(waitingTime+"M");
                 }
             }
 
@@ -91,5 +96,30 @@ public class FuelStationDetailsRequestActivity extends AppCompatActivity {
         Intent intent = new Intent(FuelStationDetailsRequestActivity.this, CreateFuelRequestPage.class);
         intent.putExtra("queueId", queueId);
         startActivity(intent);
+    }
+
+    public void onClickExit(View view) {
+        String endTime = dateTimeOperations.getDate();
+        FuelQueueRemoveRequest fuelQueueRemoveRequest = new FuelQueueRemoveRequest(endTime, "");
+        Call<Void> call = fuelStationInterface.fuelQueueRemove("/api/FuelStation/removeFuelQueue/"+queueId,fuelQueueRemoveRequest);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.isSuccessful()){
+                    Intent intent = new Intent(FuelStationDetailsRequestActivity.this, FuelStationActivity.class);
+                    startActivity(intent);
+                    finish();
+                }else{
+                    Toast.makeText(FuelStationDetailsRequestActivity.this, "CHECK_THE_History_INPUTS", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(FuelStationDetailsRequestActivity.this, "INTERNAL_SERVER_ERROR(CAN'T_REACH_SEVER)", Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 }

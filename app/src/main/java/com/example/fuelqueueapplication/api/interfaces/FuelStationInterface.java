@@ -17,9 +17,12 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Url;
+
 /**
  * fuel station interface
  * **/
@@ -57,8 +60,8 @@ public interface FuelStationInterface {
     Call<Void> enrollToQueue(@Body FuelQueueRequest fuelQueueRequest);
 
     //Remove from the Queue. (DELETE)
-    @DELETE("/api/FuelStation/removeFuelQueue/{id}")
-    Call<Void> fuelQueueRemove(@Path("id") String id,@Body FuelQueueRemoveRequest fuelQueueRemoveRequest);
+    @HTTP(method = "DELETE", hasBody = true)
+    Call<Void> fuelQueueRemove(@Url String url, @Body FuelQueueRemoveRequest fuelQueueRemoveRequest);
 
     //Get List of Request (GET)
     @GET("/api/FuelStation/getFuelRequests")
