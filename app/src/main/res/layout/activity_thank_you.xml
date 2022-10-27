@@ -8,7 +8,7 @@
     tools:context=".ThankYouActivity">
 
     <LinearLayout
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_width="wrap_content"
         android:layout_margin="20dp"
         android:orientation="vertical"
@@ -30,6 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="25sp"
+            android:layout_weight="1"
             android:textStyle="normal"
             android:textColor="@color/white"
             android:text="For using the Fuel App service"
@@ -37,13 +38,12 @@
 
         </TextView>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="620dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:layout_marginBottom="50dp"
             android:layout_gravity="center"
             android:text="Go to the Home Page"
             android:textColor="@color/white"

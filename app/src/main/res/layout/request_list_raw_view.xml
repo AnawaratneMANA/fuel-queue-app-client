@@ -7,10 +7,11 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/fuelStationRowCard"
         android:layout_width="match_parent"
+        app:cardElevation="10dp"
         android:layout_height="60dp"
         android:layout_margin="5dp"
         android:elevation="8dp"
-        app:cardBackgroundColor="#D6D6D6"
+        app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="10dp">
 
         <LinearLayout
@@ -20,10 +21,10 @@
 
             <TextView
                 android:id="@+id/requestedUser"
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
+                android:layout_weight="1"
                 android:padding="5dp"
                 android:text="Nirmith Akash"
                 android:textColor="#020202"
@@ -33,10 +34,10 @@
             <ImageView
                 android:id="@+id/StatusUpdateButtonRequestList"
                 android:layout_width="40dp"
-                android:layout_weight="0"
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
+                android:layout_weight="0"
                 android:background="@drawable/circle" />
 
 
@@ -48,6 +49,7 @@
                 app:cardCornerRadius="30dp" />
 
         </LinearLayout>
+
         <TextView
             android:id="@+id/requestDescription"
             android:layout_width="wrap_content"

@@ -85,7 +85,8 @@ public class FuelStationOwnersListViewAdapter extends RecyclerView.Adapter<FuelS
     //on bind view holder
     @Override
     public void onBindViewHolder(@NonNull FuelStationOwnersListViewAdapter.MyViewHolder holder, int position) {
-        holder.Location.setText(stationResponseList.get(position).getLocation());
+        holder.Location.setText("⛽ " + stationResponseList.get(position).getLocation());
+        holder.Availability.setText(stationResponseList.get(position).getAvailability());
     }
 
     //get list count
@@ -97,7 +98,7 @@ public class FuelStationOwnersListViewAdapter extends RecyclerView.Adapter<FuelS
     //my view holder method
     public class MyViewHolder extends RecyclerView.ViewHolder {
         // Define View Items
-        TextView Location;
+        TextView Location, Availability;
         LinearLayout Layout;
         ImageView UpdateButton;
 
@@ -105,6 +106,7 @@ public class FuelStationOwnersListViewAdapter extends RecyclerView.Adapter<FuelS
             super(itemView);
             // Register View Items
             Location = itemView.findViewById(R.id.FuelStationOwnerLocationName);
+            Availability = itemView.findViewById(R.id.FuelStationOwnerStatus);
             Layout = itemView.findViewById(R.id.FuelStationOwnerLayout);
             Layout.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -80,8 +80,8 @@ public class FuelQueueListViewAdapter extends RecyclerView.Adapter<FuelQueueList
     //on bind view holder
     @Override
     public void onBindViewHolder(@NonNull FuelQueueListViewAdapter.MyViewHolder holder, int position) {
-        holder.textViewUserName.setText(queueResponseList.get(position).getUserId());
-        holder.textViewWaitingTime.setText("Waiting Time: -");
+        holder.textViewUserName.setText("👤 " + queueResponseList.get(position).getUserId());
+        holder.textViewWaitingTime.setText("🕑 " + queueResponseList.get(position).getStartingDateTime());
     }
 
     //get list count

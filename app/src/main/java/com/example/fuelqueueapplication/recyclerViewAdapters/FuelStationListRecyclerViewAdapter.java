@@ -51,7 +51,7 @@ public class FuelStationListRecyclerViewAdapter extends RecyclerView.Adapter<Fue
     //on bind view holder
     @Override
     public void onBindViewHolder(@NonNull FuelStationListRecyclerViewAdapter.MyViewHolder holder, int position) {
-        holder.location.setText(stationResponseList.get(position).getLocation());
+        holder.location.setText("⛽ " + stationResponseList.get(position).getLocation());
         String startTime = stationResponseList.get(position).getStartingTime();
         String endTime = stationResponseList.get(position).getEndingTime();
         if(startTime.equals("")){

@@ -7,6 +7,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -39,6 +42,8 @@ public class FuelStationInsertForm extends AppCompatActivity {
     EditText editTextStartingTime;
     EditText editTextEndingTime;
     Button buttonUpdateStationDetails;
+    AutoCompleteTextView autoCompleteTextView;
+    String[] items = {"Petrol 95 OCT", "Super Diesel", "Petrol 92 OCT", "EURO 3"};
 
     // API interface
     FuelStationInterface fuelStationInterface;
@@ -59,6 +64,7 @@ public class FuelStationInsertForm extends AppCompatActivity {
 
         // Register UI components
         textInputLayoutStartingTime = findViewById(R.id.FuelServiceStartTime);
+        autoCompleteTextView = findViewById(R.id.rNoOfPumpsInput);
         editTextStartingTime = findViewById(R.id.FuelStartTimeInputText);
         editTextEndingTime = findViewById(R.id.FuelEndTimeInputText);
         buttonUpdateStationDetails = findViewById(R.id.InsertFuelStationButton);
@@ -87,6 +93,15 @@ public class FuelStationInsertForm extends AppCompatActivity {
 
         // API call related
         fuelStationInterface = ApiClient.getClient().create(FuelStationInterface.class);
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter<String>(this, R.layout.vehicle_item_view, items);
+        autoCompleteTextView.setAdapter(arrayAdapter);
+        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+        });
 }
 
     //to show date time picker
@@ -137,7 +152,7 @@ public class FuelStationInsertForm extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
                     Log.i(TAG, "Updated the Start time and Ending Time");
-                    Intent intent = new Intent(FuelStationInsertForm.this, FuelStationActivity.class);
+                    Intent intent = new Intent(FuelStationInsertForm.this, FuelStationListOwnerActivity.class);
                     startActivity(intent);
                 }
 

@@ -32,6 +32,7 @@ public class FuelStationRequestListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fuel_station_request_list);
+        getSupportActionBar().setTitle("Request List");
 
         recyclerView = findViewById(R.id.FuelStationOwnerRequestListRecycleView);
 

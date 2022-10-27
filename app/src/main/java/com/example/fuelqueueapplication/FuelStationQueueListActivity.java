@@ -28,9 +28,9 @@ public class FuelStationQueueListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setTitle("Queue List");
         setContentView(R.layout.activity_fuel_station_queue_list);
         recyclerView = findViewById(R.id.FuelStationOwnerQueueListRecycleView);
-
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
 

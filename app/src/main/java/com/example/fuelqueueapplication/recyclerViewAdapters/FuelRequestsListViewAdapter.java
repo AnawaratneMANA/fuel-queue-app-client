@@ -1,6 +1,9 @@
 package com.example.fuelqueueapplication.recyclerViewAdapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +16,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fuelqueueapplication.FuelStationDetailActivity;
+import com.example.fuelqueueapplication.FuelStationRequestListActivity;
 import com.example.fuelqueueapplication.R;
 import com.example.fuelqueueapplication.api.ApiClient;
 import com.example.fuelqueueapplication.api.interfaces.FuelStationInterface;
@@ -89,16 +94,28 @@ public class FuelRequestsListViewAdapter extends RecyclerView.Adapter<FuelReques
     }
 
     //on bind view holder
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull FuelRequestsListViewAdapter.MyViewHolder holder, int position) {
-        holder.textViewRequestedUserName.setText(requestResponseList.get(position).getUserId());
-        holder.textViewDescription.setText("Description N/A");
+        holder.textViewRequestedUserName.setText("📩 Request " + (position + 1) );
+        if(requestResponseList.get(position).getApprovalStatus().equalsIgnoreCase("approve")){
+            holder.textViewDescription.setText("✅ " + requestResponseList.get(position).getApprovalStatus());
+            holder.StatusUpdateButton.setEnabled(false);
+            holder.StatusUpdateButton.setBackgroundColor(Color.WHITE);
+        } else {
+            holder.textViewDescription.setText("🔃  " + requestResponseList.get(position).getApprovalStatus());
+        }
+
     }
 
     //get list count
     @Override
     public int getItemCount() {
         return requestResponseList.size();
+    }
+
+    public void refreshView() {
+        notifyDataSetChanged();
     }
 
     //my view holder method
@@ -124,6 +141,11 @@ public class FuelRequestsListViewAdapter extends RecyclerView.Adapter<FuelReques
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             Toast.makeText(itemView.getContext(), "Approval Status Updated!", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(context, FuelStationRequestListActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            context.startActivity(intent);
+                            refreshView();
+
                         }
 
                         @Override
@@ -131,8 +153,10 @@ public class FuelRequestsListViewAdapter extends RecyclerView.Adapter<FuelReques
                             Toast.makeText(itemView.getContext(), "Error Updating Approval Status!", Toast.LENGTH_SHORT).show();
                         }
                     });
+                    refreshView();
                 }
             });
+
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.fuelqueueapplication;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -52,6 +53,8 @@ public class CreateFuelRequestPage extends AppCompatActivity {
         Intent intent = getIntent();
         queueId = intent.getStringExtra("queueId");
         System.out.println("queueId :"+queueId);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         sharedPreferences = getSharedPreferences(Constants.SHARED_PREFERENCE_NAME,MODE_PRIVATE);
         userId = sharedPreferences.getString(Constants.USER_ID,null);
