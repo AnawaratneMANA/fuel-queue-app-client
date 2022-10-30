@@ -29,7 +29,6 @@ public class FuelStationDetailActivity extends AppCompatActivity {
 
     // Define Elements
     TextView textViewFuelStationNameDetails;
-    TextView textViewStationOwner;
     TextView textViewServiceStartAt;
     TextView textViewServiceEndAt;
     TextView textViewFuelType;
@@ -47,14 +46,13 @@ public class FuelStationDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
         location = intent.getStringExtra("locationName");
-        getSupportActionBar().setTitle(location);
+        getSupportActionBar().setTitle("Enrolling to the Queue");
 
         sharedPreferences = getSharedPreferences(Constants.SHARED_PREFERENCE_NAME,MODE_PRIVATE);
         userId = sharedPreferences.getString(Constants.USER_ID,null);
 
         // Register elements
         textViewFuelStationNameDetails = findViewById(R.id.fuelStationNameDetails);
-        textViewStationOwner= findViewById(R.id.stationOwnerNameDetails);
         textViewServiceStartAt = findViewById(R.id.startTimeDetails);
         textViewServiceEndAt = findViewById(R.id.endTimeDetails);
         textViewFuelType = findViewById(R.id.fuelTypeDetails);
@@ -74,8 +72,7 @@ public class FuelStationDetailActivity extends AppCompatActivity {
                     //Toast.makeText(FuelStationDetailActivity.this, "DEBUG: " + fuelStationDetailsResponse.getEndingTime(), Toast.LENGTH_SHORT).show();
 
                     // Bind details to the interface elements
-                    textViewFuelStationNameDetails.setText("IOC Filling Station");
-                    textViewStationOwner.setText(fuelStationDetailsResponse.getStationOwner());
+                    textViewFuelStationNameDetails.setText(location);
                     textViewServiceStartAt.setText(fuelStationDetailsResponse.getStartingTime());
                     textViewServiceEndAt.setText(fuelStationDetailsResponse.getEndingTime());
                     textViewFuelType.setText(fuelStationDetailsResponse.getFuelType());

@@ -27,7 +27,6 @@ public class FuelStationDetailsRequestActivity extends AppCompatActivity {
 
     // Define Elements
     TextView textViewFuelStationNameDetailsRequest;
-    TextView textViewStationOwnerRequest;
     TextView textViewServiceStartAtRequest;
     TextView textViewServiceEndAtRequest;
     TextView textViewFuelTypeRequest;
@@ -45,10 +44,10 @@ public class FuelStationDetailsRequestActivity extends AppCompatActivity {
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
         queueId = intent.getStringExtra("queueId");
+        getSupportActionBar().setTitle("In the Queue for service");
 
         // Register elements
         textViewFuelStationNameDetailsRequest = findViewById(R.id.stationNameDetailsRequest);
-        textViewStationOwnerRequest= findViewById(R.id.stationOwnerNameDetailsRequest);
         textViewServiceStartAtRequest = findViewById(R.id.startingTimeDetailsRequest);
         textViewServiceEndAtRequest = findViewById(R.id.endingTimeDetailsRequest);
         textViewFuelTypeRequest = findViewById(R.id.fuelTypeDetailsRequest);
@@ -70,15 +69,14 @@ public class FuelStationDetailsRequestActivity extends AppCompatActivity {
                    // Toast.makeText(FuelStationDetailsRequestActivity.this, "DEBUG: " + fuelStationDetailsResponse.getEndingTime(), Toast.LENGTH_SHORT).show();
 
                     // Bind details to the interface elements
-                    textViewFuelStationNameDetailsRequest.setText("IOC Filling Station");
-                    textViewStationOwnerRequest.setText(fuelStationDetailsResponse.getStationOwner());
+                    textViewFuelStationNameDetailsRequest.setText(fuelStationDetailsResponse.getLocation());
                     textViewServiceStartAtRequest.setText(fuelStationDetailsResponse.getStartingTime());
                     textViewServiceEndAtRequest.setText(fuelStationDetailsResponse.getEndingTime());
                     textViewFuelTypeRequest.setText(fuelStationDetailsResponse.getFuelType());
-                    textViewVehicleCountRequest.setText(String.valueOf(fuelStationDetailsResponse.getVehicleCount()));
-                    int count = fuelStationDetailsResponse.getVehicleCount();
+                    int count = fuelStationDetailsResponse.getVehicleCount() -1;
+                    textViewVehicleCountRequest.setText(String.valueOf(count));
                     int waitingTime = count*5;
-                    textViewUserWaitingTimeRequest.setText(waitingTime+"M");
+                    textViewUserWaitingTimeRequest.setText(waitingTime+" minutes");
                 }
             }
 

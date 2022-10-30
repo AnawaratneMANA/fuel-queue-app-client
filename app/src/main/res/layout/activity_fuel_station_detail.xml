@@ -53,34 +53,6 @@
                 android:layout_height="1dp"
                 android:background="#919191"/>
             <LinearLayout
-                android:id="@+id/fuelStationOwnerContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="5dp">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Station Owner"
-                    android:textColor="#020202"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/stationOwnerNameDetails"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Nirmith Akash"
-                    android:textColor="#020202"
-                    android:textSize="15sp"
-                    android:textStyle="normal" />
-            </LinearLayout>
-            <View
-                android:layout_marginTop="3dp"
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="#919191"/>
-            <LinearLayout
                 android:id="@+id/fuelStaionStartingTimeContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
